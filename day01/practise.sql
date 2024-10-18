@@ -1,1 +1,0 @@
-create table t1(c1 int , c2 char ,c3 char(10),c4 varchar(10));

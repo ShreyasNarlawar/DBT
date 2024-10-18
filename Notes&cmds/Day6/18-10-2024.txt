@@ -1,0 +1,2942 @@
+mysql> select comm from emp;
++------+
+| comm |
++------+
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+|  300 |
+|  500 |
+| NULL |
+| 1400 |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+|    0 |
+| NULL |
+| NULL |
+| NULL |
+| NULL |
+| 2700 |
+| NULL |
+| 2700 |
+|  500 |
+| NULL |
+| NULL |
+| NULL |
++------+
+28 rows in set (0.01 sec)
+
+mysql> select ename, job, comm from emp;
++----------+---------------------+------+
+| ename    | job                 | comm |
++----------+---------------------+------+
+| GITA     | Compliance officers | NULL |
+| VRUSHALI | Compliance officers | NULL |
+| SHARMIN  | Public Relation     | NULL |
+| BANDISH  | Public Relation     | NULL |
+| SMITH    | CLERK               | NULL |
+| AARAV    | CLERK               | NULL |
+| THOMAS   | CLERK               | NULL |
+| ALLEN    | SALESMAN            |  300 |
+| WARD     | SALESMAN            |  500 |
+| JONES    | MANAGER             | NULL |
+| MARTIN   | SALESMAN            | 1400 |
+| BLAKE    | MANAGER             | NULL |
+| CLARK    | MANAGER             | NULL |
+| SCOTT    | ANALYST             | NULL |
+| KING     | PRESIDENT           | NULL |
+| FRED     | vice PRESIDENT      | NULL |
+| TURNER   | SALESMAN            |    0 |
+| ADAMS    | CLERK               | NULL |
+| JAMES    | CLERK               | NULL |
+| FORD     | ANALYST             | NULL |
+| HOFFMAN  | MANAGER             | NULL |
+| GRASS    | SALESMAN            | 2700 |
+| MILLER   | CLERK               | NULL |
+| AARUSH   | SALESMAN            | 2700 |
+| ALEX     | MANAGER             |  500 |
+| NATASHA  | CLERK               | NULL |
+| SANGITA  | Compliance officers | NULL |
+| SUPRIYA  | ANALYST             | NULL |
++----------+---------------------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, comm from emp where comm=null;
+Empty set (0.00 sec)
+
+mysql> select ename, job, comm from emp where comm<=>null;
++----------+---------------------+------+
+| ename    | job                 | comm |
++----------+---------------------+------+
+| GITA     | Compliance officers | NULL |
+| VRUSHALI | Compliance officers | NULL |
+| SHARMIN  | Public Relation     | NULL |
+| BANDISH  | Public Relation     | NULL |
+| SMITH    | CLERK               | NULL |
+| AARAV    | CLERK               | NULL |
+| THOMAS   | CLERK               | NULL |
+| JONES    | MANAGER             | NULL |
+| BLAKE    | MANAGER             | NULL |
+| CLARK    | MANAGER             | NULL |
+| SCOTT    | ANALYST             | NULL |
+| KING     | PRESIDENT           | NULL |
+| FRED     | vice PRESIDENT      | NULL |
+| ADAMS    | CLERK               | NULL |
+| JAMES    | CLERK               | NULL |
+| FORD     | ANALYST             | NULL |
+| HOFFMAN  | MANAGER             | NULL |
+| MILLER   | CLERK               | NULL |
+| NATASHA  | CLERK               | NULL |
+| SANGITA  | Compliance officers | NULL |
+| SUPRIYA  | ANALYST             | NULL |
++----------+---------------------+------+
+21 rows in set (0.00 sec)
+
+mysql> select ename, job, comm from emp where comm is null null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null' at line 1
+mysql> select ename, job, comm from emp where comm is null;
++----------+---------------------+------+
+| ename    | job                 | comm |
++----------+---------------------+------+
+| GITA     | Compliance officers | NULL |
+| VRUSHALI | Compliance officers | NULL |
+| SHARMIN  | Public Relation     | NULL |
+| BANDISH  | Public Relation     | NULL |
+| SMITH    | CLERK               | NULL |
+| AARAV    | CLERK               | NULL |
+| THOMAS   | CLERK               | NULL |
+| JONES    | MANAGER             | NULL |
+| BLAKE    | MANAGER             | NULL |
+| CLARK    | MANAGER             | NULL |
+| SCOTT    | ANALYST             | NULL |
+| KING     | PRESIDENT           | NULL |
+| FRED     | vice PRESIDENT      | NULL |
+| ADAMS    | CLERK               | NULL |
+| JAMES    | CLERK               | NULL |
+| FORD     | ANALYST             | NULL |
+| HOFFMAN  | MANAGER             | NULL |
+| MILLER   | CLERK               | NULL |
+| NATASHA  | CLERK               | NULL |
+| SANGITA  | Compliance officers | NULL |
+| SUPRIYA  | ANALYST             | NULL |
++----------+---------------------+------+
+21 rows in set (0.00 sec)
+
+mysql> select ename, job, comm from emp where comm is not null;
++--------+----------+------+
+| ename  | job      | comm |
++--------+----------+------+
+| ALLEN  | SALESMAN |  300 |
+| WARD   | SALESMAN |  500 |
+| MARTIN | SALESMAN | 1400 |
+| TURNER | SALESMAN |    0 |
+| GRASS  | SALESMAN | 2700 |
+| AARUSH | SALESMAN | 2700 |
+| ALEX   | MANAGER  |  500 |
++--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> select comm, isnull(comm), ifnull(comm,'N/A')  from emp;
++------+--------------+--------------------+
+| comm | isnull(comm) | ifnull(comm,'N/A') |
++------+--------------+--------------------+
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+|  300 |            0 | 300                |
+|  500 |            0 | 500                |
+| NULL |            1 | N/A                |
+| 1400 |            0 | 1400               |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+|    0 |            0 | 0                  |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| 2700 |            0 | 2700               |
+| NULL |            1 | N/A                |
+| 2700 |            0 | 2700               |
+|  500 |            0 | 500                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
+| NULL |            1 | N/A                |
++------+--------------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> select comm, isnull(comm), ifnull(comm,-1)  from emp;
++------+--------------+-----------------+
+| comm | isnull(comm) | ifnull(comm,-1) |
++------+--------------+-----------------+
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+|  300 |            0 |             300 |
+|  500 |            0 |             500 |
+| NULL |            1 |              -1 |
+| 1400 |            0 |            1400 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+|    0 |            0 |               0 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| 2700 |            0 |            2700 |
+| NULL |            1 |              -1 |
+| 2700 |            0 |            2700 |
+|  500 |            0 |             500 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
+| NULL |            1 |              -1 |
++------+--------------+-----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, comm from emp order by comm;
++----------+------+
+| ename    | comm |
++----------+------+
+| GITA     | NULL |
+| VRUSHALI | NULL |
+| SHARMIN  | NULL |
+| BANDISH  | NULL |
+| SMITH    | NULL |
+| AARAV    | NULL |
+| THOMAS   | NULL |
+| JONES    | NULL |
+| BLAKE    | NULL |
+| CLARK    | NULL |
+| SCOTT    | NULL |
+| KING     | NULL |
+| FRED     | NULL |
+| ADAMS    | NULL |
+| JAMES    | NULL |
+| FORD     | NULL |
+| HOFFMAN  | NULL |
+| MILLER   | NULL |
+| NATASHA  | NULL |
+| SANGITA  | NULL |
+| SUPRIYA  | NULL |
+| TURNER   |    0 |
+| ALLEN    |  300 |
+| WARD     |  500 |
+| ALEX     |  500 |
+| MARTIN   | 1400 |
+| GRASS    | 2700 |
+| AARUSH   | 2700 |
++----------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, comm from emp order by comm desc;
++----------+------+
+| ename    | comm |
++----------+------+
+| GRASS    | 2700 |
+| AARUSH   | 2700 |
+| MARTIN   | 1400 |
+| WARD     |  500 |
+| ALEX     |  500 |
+| ALLEN    |  300 |
+| TURNER   |    0 |
+| GITA     | NULL |
+| VRUSHALI | NULL |
+| SHARMIN  | NULL |
+| BANDISH  | NULL |
+| SMITH    | NULL |
+| AARAV    | NULL |
+| THOMAS   | NULL |
+| JONES    | NULL |
+| BLAKE    | NULL |
+| CLARK    | NULL |
+| SCOTT    | NULL |
+| KING     | NULL |
+| FRED     | NULL |
+| ADAMS    | NULL |
+| JAMES    | NULL |
+| FORD     | NULL |
+| HOFFMAN  | NULL |
+| MILLER   | NULL |
+| NATASHA  | NULL |
+| SANGITA  | NULL |
+| SUPRIYA  | NULL |
++----------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, comm, isnull(comm) from emp order by comm desc;
++----------+------+--------------+
+| ename    | comm | isnull(comm) |
++----------+------+--------------+
+| GRASS    | 2700 |            0 |
+| AARUSH   | 2700 |            0 |
+| MARTIN   | 1400 |            0 |
+| WARD     |  500 |            0 |
+| ALEX     |  500 |            0 |
+| ALLEN    |  300 |            0 |
+| TURNER   |    0 |            0 |
+| GITA     | NULL |            1 |
+| VRUSHALI | NULL |            1 |
+| SHARMIN  | NULL |            1 |
+| BANDISH  | NULL |            1 |
+| SMITH    | NULL |            1 |
+| AARAV    | NULL |            1 |
+| THOMAS   | NULL |            1 |
+| JONES    | NULL |            1 |
+| BLAKE    | NULL |            1 |
+| CLARK    | NULL |            1 |
+| SCOTT    | NULL |            1 |
+| KING     | NULL |            1 |
+| FRED     | NULL |            1 |
+| ADAMS    | NULL |            1 |
+| JAMES    | NULL |            1 |
+| FORD     | NULL |            1 |
+| HOFFMAN  | NULL |            1 |
+| MILLER   | NULL |            1 |
+| NATASHA  | NULL |            1 |
+| SANGITA  | NULL |            1 |
+| SUPRIYA  | NULL |            1 |
++----------+------+--------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, comm, isnull(comm) from emp order by comm;
++----------+------+--------------+
+| ename    | comm | isnull(comm) |
++----------+------+--------------+
+| GITA     | NULL |            1 |
+| VRUSHALI | NULL |            1 |
+| SHARMIN  | NULL |            1 |
+| BANDISH  | NULL |            1 |
+| SMITH    | NULL |            1 |
+| AARAV    | NULL |            1 |
+| THOMAS   | NULL |            1 |
+| JONES    | NULL |            1 |
+| BLAKE    | NULL |            1 |
+| CLARK    | NULL |            1 |
+| SCOTT    | NULL |            1 |
+| KING     | NULL |            1 |
+| FRED     | NULL |            1 |
+| ADAMS    | NULL |            1 |
+| JAMES    | NULL |            1 |
+| FORD     | NULL |            1 |
+| HOFFMAN  | NULL |            1 |
+| MILLER   | NULL |            1 |
+| NATASHA  | NULL |            1 |
+| SANGITA  | NULL |            1 |
+| SUPRIYA  | NULL |            1 |
+| TURNER   |    0 |            0 |
+| ALLEN    |  300 |            0 |
+| WARD     |  500 |            0 |
+| ALEX     |  500 |            0 |
+| MARTIN   | 1400 |            0 |
+| GRASS    | 2700 |            0 |
+| AARUSH   | 2700 |            0 |
++----------+------+--------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, comm, isnull(comm) from emp order by isnull(comm), comm;
++----------+------+--------------+
+| ename    | comm | isnull(comm) |
++----------+------+--------------+
+| TURNER   |    0 |            0 |
+| ALLEN    |  300 |            0 |
+| WARD     |  500 |            0 |
+| ALEX     |  500 |            0 |
+| MARTIN   | 1400 |            0 |
+| GRASS    | 2700 |            0 |
+| AARUSH   | 2700 |            0 |
+| GITA     | NULL |            1 |
+| VRUSHALI | NULL |            1 |
+| SHARMIN  | NULL |            1 |
+| BANDISH  | NULL |            1 |
+| SMITH    | NULL |            1 |
+| AARAV    | NULL |            1 |
+| THOMAS   | NULL |            1 |
+| JONES    | NULL |            1 |
+| BLAKE    | NULL |            1 |
+| CLARK    | NULL |            1 |
+| SCOTT    | NULL |            1 |
+| KING     | NULL |            1 |
+| FRED     | NULL |            1 |
+| ADAMS    | NULL |            1 |
+| JAMES    | NULL |            1 |
+| FORD     | NULL |            1 |
+| HOFFMAN  | NULL |            1 |
+| MILLER   | NULL |            1 |
+| NATASHA  | NULL |            1 |
+| SANGITA  | NULL |            1 |
+| SUPRIYA  | NULL |            1 |
++----------+------+--------------+
+28 rows in set (0.00 sec)
+
+mysql> select count(*) from emp where job='manager';
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select job, count(*) from emp where job='manager';
++---------+----------+
+| job     | count(*) |
++---------+----------+
+| MANAGER |        5 |
++---------+----------+
+1 row in set (0.00 sec)
+
+mysql> select job, count(*) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.emp.JOB'; this is incompatible with sql_mode=only_full_group_by
+mysql> select job, count(*) from emp where job='manager'or job='salesman';
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.emp.JOB'; this is incompatible with sql_mode=only_full_group_by
+mysql> select job, count(*) from emp where job='manager'or job='salesman';
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.emp.JOB'; this is incompatible with sql_mode=only_full_group_by
+mysql> select count(*) from emp where job='manager';
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> select count(ename) from emp;
++--------------+
+| count(ename) |
++--------------+
+|           28 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select count(job) from emp;
++------------+
+| count(job) |
++------------+
+|         28 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select job, count(job) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.emp.JOB'; this is incompatible with sql_mode=only_full_group_by
+mysql> select count(job) from emp group by job;
++------------+
+| count(job) |
++------------+
+|          3 |
+|          2 |
+|          7 |
+|          6 |
+|          5 |
+|          3 |
+|          1 |
+|          1 |
++------------+
+8 rows in set (0.00 sec)
+
+mysql> select count(*) from emp group by job;
++----------+
+| count(*) |
++----------+
+|        3 |
+|        2 |
+|        7 |
+|        6 |
+|        5 |
+|        3 |
+|        1 |
+|        1 |
++----------+
+8 rows in set (0.00 sec)
+
+mysql> select job, count(*) from emp group by job;
++---------------------+----------+
+| job                 | count(*) |
++---------------------+----------+
+| Compliance officers |        3 |
+| Public Relation     |        2 |
+| CLERK               |        7 |
+| SALESMAN            |        6 |
+| MANAGER             |        5 |
+| ANALYST             |        3 |
+| PRESIDENT           |        1 |
+| vice PRESIDENT      |        1 |
++---------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select job, sum(count(*)) from emp group by job;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select job, count(*) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.emp.JOB'; this is incompatible with sql_mode=only_full_group_by
+mysql> select job, sum(count(*)) from emp group by job;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select job, count(*) from emp group by job;
++---------------------+----------+
+| job                 | count(*) |
++---------------------+----------+
+| Compliance officers |        3 |
+| Public Relation     |        2 |
+| CLERK               |        7 |
+| SALESMAN            |        6 |
+| MANAGER             |        5 |
+| ANALYST             |        3 |
+| PRESIDENT           |        1 |
+| vice PRESIDENT      |        1 |
++---------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select deptno, count(*) from emp group by deptno;
++--------+----------+
+| deptno | count(*) |
++--------+----------+
+|     10 |        5 |
+|     20 |        8 |
+|     30 |       12 |
+|     50 |        3 |
++--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from pivot_Table;
++----+-------------+---------------+------------+
+| id | productName | storeLocation | totalSales |
++----+-------------+---------------+------------+
+|  1 | Chair       | North         |         55 |
+|  2 | Desk        | Central       |        120 |
+|  3 | Couch       | Central       |         78 |
+|  4 | Chair       | South         |         23 |
+|  5 | Chair       | South         |         10 |
+|  6 | Chair       | North         |         98 |
+|  7 | Desk        | West          |         61 |
+|  8 | Couch       | North         |        180 |
+|  9 | Chair       | South         |         14 |
+| 10 | Desk        | North         |         45 |
+| 11 | Chair       | North         |         87 |
+| 12 | Chair       | Central       |         34 |
+| 13 | Desk        | South         |         42 |
+| 14 | Couch       | West          |         58 |
+| 15 | Couch       | Central       |         27 |
+| 16 | Chair       | South         |         91 |
+| 17 | Chair       | West          |         82 |
+| 18 | Chair       | North         |         37 |
+| 19 | Desk        | North         |         68 |
+| 20 | Couch       | Central       |         54 |
+| 21 | Chair       | South         |         81 |
+| 22 | Desk        | North         |         25 |
+| 23 | Chair       | North         |         46 |
+| 24 | Chair       | Central       |        121 |
+| 25 | Desk        | South         |         85 |
+| 26 | Couch       | North         |         43 |
+| 27 | Desk        | West          |         10 |
+| 28 | Chair       | North         |          5 |
+| 29 | Chair       | Central       |         16 |
+| 30 | Desk        | South         |          9 |
+| 31 | Couch       | West          |         22 |
+| 32 | Couch       | Central       |         59 |
+| 33 | Chair       | South         |         76 |
+| 34 | Chair       | West          |         48 |
+| 35 | Chair       | North         |         19 |
+| 36 | Desk        | North         |          3 |
+| 37 | Couch       | West          |         63 |
+| 38 | Chair       | South         |         81 |
+| 39 | Desk        | North         |         85 |
+| 40 | Chair       | North         |         90 |
+| 41 | Chair       | Central       |         47 |
+| 42 | Desk        | West          |         63 |
+| 43 | Couch       | North         |         28 |
+| 44 | Chair       | East          |         89 |
+| 45 | Chair       | East          |         11 |
+| 46 | Desk        | East          |        110 |
++----+-------------+---------------+------------+
+46 rows in set (0.00 sec)
+
+mysql> select * from pivot_Table order by storelocation;
++----+-------------+---------------+------------+
+| id | productName | storeLocation | totalSales |
++----+-------------+---------------+------------+
+| 20 | Couch       | Central       |         54 |
+|  2 | Desk        | Central       |        120 |
+|  3 | Couch       | Central       |         78 |
+| 32 | Couch       | Central       |         59 |
+| 12 | Chair       | Central       |         34 |
+| 29 | Chair       | Central       |         16 |
+| 41 | Chair       | Central       |         47 |
+| 24 | Chair       | Central       |        121 |
+| 15 | Couch       | Central       |         27 |
+| 44 | Chair       | East          |         89 |
+| 45 | Chair       | East          |         11 |
+| 46 | Desk        | East          |        110 |
+|  1 | Chair       | North         |         55 |
+| 19 | Desk        | North         |         68 |
+| 36 | Desk        | North         |          3 |
+| 23 | Chair       | North         |         46 |
+|  8 | Couch       | North         |        180 |
+| 35 | Chair       | North         |         19 |
+| 10 | Desk        | North         |         45 |
+| 11 | Chair       | North         |         87 |
+| 22 | Desk        | North         |         25 |
+| 39 | Desk        | North         |         85 |
+| 40 | Chair       | North         |         90 |
+|  6 | Chair       | North         |         98 |
+| 18 | Chair       | North         |         37 |
+| 43 | Couch       | North         |         28 |
+| 26 | Couch       | North         |         43 |
+| 28 | Chair       | North         |          5 |
+|  4 | Chair       | South         |         23 |
+|  5 | Chair       | South         |         10 |
+|  9 | Chair       | South         |         14 |
+| 13 | Desk        | South         |         42 |
+| 16 | Chair       | South         |         91 |
+| 21 | Chair       | South         |         81 |
+| 33 | Chair       | South         |         76 |
+| 25 | Desk        | South         |         85 |
+| 38 | Chair       | South         |         81 |
+| 30 | Desk        | South         |          9 |
+|  7 | Desk        | West          |         61 |
+| 14 | Couch       | West          |         58 |
+| 17 | Chair       | West          |         82 |
+| 27 | Desk        | West          |         10 |
+| 34 | Chair       | West          |         48 |
+| 31 | Couch       | West          |         22 |
+| 42 | Desk        | West          |         63 |
+| 37 | Couch       | West          |         63 |
++----+-------------+---------------+------------+
+46 rows in set (0.00 sec)
+
+mysql> select * from pivot_Table;
++----+-------------+---------------+------------+
+| id | productName | storeLocation | totalSales |
++----+-------------+---------------+------------+
+|  1 | Chair       | North         |         55 |
+|  2 | Desk        | Central       |        120 |
+|  3 | Couch       | Central       |         78 |
+|  4 | Chair       | South         |         23 |
+|  5 | Chair       | South         |         10 |
+|  6 | Chair       | North         |         98 |
+|  7 | Desk        | West          |         61 |
+|  8 | Couch       | North         |        180 |
+|  9 | Chair       | South         |         14 |
+| 10 | Desk        | North         |         45 |
+| 11 | Chair       | North         |         87 |
+| 12 | Chair       | Central       |         34 |
+| 13 | Desk        | South         |         42 |
+| 14 | Couch       | West          |         58 |
+| 15 | Couch       | Central       |         27 |
+| 16 | Chair       | South         |         91 |
+| 17 | Chair       | West          |         82 |
+| 18 | Chair       | North         |         37 |
+| 19 | Desk        | North         |         68 |
+| 20 | Couch       | Central       |         54 |
+| 21 | Chair       | South         |         81 |
+| 22 | Desk        | North         |         25 |
+| 23 | Chair       | North         |         46 |
+| 24 | Chair       | Central       |        121 |
+| 25 | Desk        | South         |         85 |
+| 26 | Couch       | North         |         43 |
+| 27 | Desk        | West          |         10 |
+| 28 | Chair       | North         |          5 |
+| 29 | Chair       | Central       |         16 |
+| 30 | Desk        | South         |          9 |
+| 31 | Couch       | West          |         22 |
+| 32 | Couch       | Central       |         59 |
+| 33 | Chair       | South         |         76 |
+| 34 | Chair       | West          |         48 |
+| 35 | Chair       | North         |         19 |
+| 36 | Desk        | North         |          3 |
+| 37 | Couch       | West          |         63 |
+| 38 | Chair       | South         |         81 |
+| 39 | Desk        | North         |         85 |
+| 40 | Chair       | North         |         90 |
+| 41 | Chair       | Central       |         47 |
+| 42 | Desk        | West          |         63 |
+| 43 | Couch       | North         |         28 |
+| 44 | Chair       | East          |         89 |
+| 45 | Chair       | East          |         11 |
+| 46 | Desk        | East          |        110 |
++----+-------------+---------------+------------+
+46 rows in set (0.00 sec)
+
+mysql> select sum(totalsales) from pivot_table;
++-----------------+
+| sum(totalsales) |
++-----------------+
+|            2599 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(totalsales) from pivot_table group by storelocation;
++-----------------+
+| sum(totalsales) |
++-----------------+
+|             914 |
+|             556 |
+|             512 |
+|             407 |
+|             210 |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(totalsales) from pivot_table group by storelocation;
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| North         |             914 |
+| Central       |             556 |
+| South         |             512 |
+| West          |             407 |
+| East          |             210 |
++---------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(totalsales) from pivot_table group by storelocation, productname;
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| North         |             437 |
+| Central       |             120 |
+| Central       |             218 |
+| South         |             376 |
+| West          |             134 |
+| North         |             251 |
+| North         |             226 |
+| Central       |             218 |
+| South         |             136 |
+| West          |             143 |
+| West          |             130 |
+| East          |             100 |
+| East          |             110 |
++---------------+-----------------+
+13 rows in set (0.00 sec)
+
+mysql> select storelocation,productname, sum(totalsales) from pivot_table group by storelocation, prod
+uctname;
++---------------+-------------+-----------------+
+| storelocation | productname | sum(totalsales) |
++---------------+-------------+-----------------+
+| North         | Chair       |             437 |
+| Central       | Desk        |             120 |
+| Central       | Couch       |             218 |
+| South         | Chair       |             376 |
+| West          | Desk        |             134 |
+| North         | Couch       |             251 |
+| North         | Desk        |             226 |
+| Central       | Chair       |             218 |
+| South         | Desk        |             136 |
+| West          | Couch       |             143 |
+| West          | Chair       |             130 |
+| East          | Chair       |             100 |
+| East          | Desk        |             110 |
++---------------+-------------+-----------------+
+13 rows in set (0.00 sec)
+
+mysql> select storelocation,productname, sum(totalsales) from pivot_table group by storelocation, productname order by storelocation,productname;
++---------------+-------------+-----------------+
+| storelocation | productname | sum(totalsales) |
++---------------+-------------+-----------------+
+| Central       | Chair       |             218 |
+| Central       | Couch       |             218 |
+| Central       | Desk        |             120 |
+| East          | Chair       |             100 |
+| East          | Desk        |             110 |
+| North         | Chair       |             437 |
+| North         | Couch       |             251 |
+| North         | Desk        |             226 |
+| South         | Chair       |             376 |
+| South         | Desk        |             136 |
+| West          | Chair       |             130 |
+| West          | Couch       |             143 |
+| West          | Desk        |             134 |
++---------------+-------------+-----------------+
+13 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(totalsales) from pivot_table group by storelocation;
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| North         |             914 |
+| Central       |             556 |
+| South         |             512 |
+| West          |             407 |
+| East          |             210 |
++---------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select storelocation, 'North', 'Central', 'South', 'West', 'East' from pivot_table group by sto
+relocation;
++---------------+-------+---------+-------+------+------+
+| storelocation | North | Central | South | West | East |
++---------------+-------+---------+-------+------+------+
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| East          | North | Central | South | West | East |
++---------------+-------+---------+-------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> select storelocation, 'North', 'Central', 'South', 'West', 'East' from pivot_table;
++---------------+-------+---------+-------+------+------+
+| storelocation | North | Central | South | West | East |
++---------------+-------+---------+-------+------+------+
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| South         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| Central       | North | Central | South | West | East |
+| West          | North | Central | South | West | East |
+| North         | North | Central | South | West | East |
+| East          | North | Central | South | West | East |
+| East          | North | Central | South | West | East |
+| East          | North | Central | South | West | East |
++---------------+-------+---------+-------+------+------+
+46 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(1) 'North', sum(1) 'Central', sum(1) 'South', sum(1) 'West', sum(1) '
+East' from pivot_table;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.pivot_table.storeLocation'; this is incompatible with sql_mode=only_full_group_by
+mysql> select storelocation, sum(1) 'North', sum(1) 'Central', sum(1) 'South', sum(1) 'West', sum(1) 'East' from pivot_table group by storelocation;
++---------------+-------+---------+-------+------+------+
+| storelocation | North | Central | South | West | East |
++---------------+-------+---------+-------+------+------+
+| North         |    16 |      16 |    16 |   16 |   16 |
+| Central       |     9 |       9 |     9 |    9 |    9 |
+| South         |    10 |      10 |    10 |   10 |   10 |
+| West          |     8 |       8 |     8 |    8 |    8 |
+| East          |     3 |       3 |     3 |    3 |    3 |
++---------------+-------+---------+-------+------+------+
+5 rows in set (0.01 sec)
+
+mysql> select * from transactions;
++-----+--------+---------------------+------+--------+
+| _id | custId | transactionDate     | type | amount |
++-----+--------+---------------------+------+--------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |
++-----+--------+---------------------+------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select type, amount from transactions;
++------+--------+
+| type | amount |
++------+--------+
+| c    |  30000 |
+| c    |  30000 |
+| c    |  30000 |
+| c    | 370000 |
+| c    | 370000 |
+| c    | 370000 |
+| d    |   7000 |
+| d    |   7500 |
+| d    |   7000 |
+| d    |   2000 |
+| d    |   4000 |
+| d    |   1500 |
+| d    |   1000 |
+| c    |    500 |
+| d    |    500 |
+| c    |   1500 |
+| c    |    200 |
+| d    |   6000 |
+| d    |   2000 |
+| c    |   1200 |
+| d    |   4500 |
+| d    |   4200 |
+| c    |    600 |
+| c    |    400 |
+| c    |   1200 |
+| c    |   1600 |
+| d    |   3000 |
+| d    |   3000 |
+| c    |    600 |
+| d    |   7000 |
+| c    |    250 |
+| d    |   5600 |
+| c    |    200 |
++------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select type, case when type='c' then amount else -amount end Amount from transactions;
++------+--------+
+| type | Amount |
++------+--------+
+| c    |  30000 |
+| c    |  30000 |
+| c    |  30000 |
+| c    | 370000 |
+| c    | 370000 |
+| c    | 370000 |
+| d    |  -7000 |
+| d    |  -7500 |
+| d    |  -7000 |
+| d    |  -2000 |
+| d    |  -4000 |
+| d    |  -1500 |
+| d    |  -1000 |
+| c    |    500 |
+| d    |   -500 |
+| c    |   1500 |
+| c    |    200 |
+| d    |  -6000 |
+| d    |  -2000 |
+| c    |   1200 |
+| d    |  -4500 |
+| d    |  -4200 |
+| c    |    600 |
+| c    |    400 |
+| c    |   1200 |
+| c    |   1600 |
+| d    |  -3000 |
+| d    |  -3000 |
+| c    |    600 |
+| d    |  -7000 |
+| c    |    250 |
+| d    |  -5600 |
+| c    |    200 |
++------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select type, case when type='c' then amount else -amount end Amount from transactions;
++------+--------+
+| type | Amount |
++------+--------+
+| c    |  30000 |
+| c    |  30000 |
+| c    |  30000 |
+| c    | 370000 |
+| c    | 370000 |
+| c    | 370000 |
+| d    |  -7000 |
+| d    |  -7500 |
+| d    |  -7000 |
+| d    |  -2000 |
+| d    |  -4000 |
+| d    |  -1500 |
+| d    |  -1000 |
+| c    |    500 |
+| d    |   -500 |
+| c    |   1500 |
+| c    |    200 |
+| d    |  -6000 |
+| d    |  -2000 |
+| c    |   1200 |
+| d    |  -4500 |
+| d    |  -4200 |
+| c    |    600 |
+| c    |    400 |
+| c    |   1200 |
+| c    |   1600 |
+| d    |  -3000 |
+| d    |  -3000 |
+| c    |    600 |
+| d    |  -7000 |
+| c    |    250 |
+| d    |  -5600 |
+| c    |    200 |
++------+--------+
+33 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> select 100, -100 ;
++-----+------+
+| 100 | -100 |
++-----+------+
+| 100 | -100 |
++-----+------+
+1 row in set (0.00 sec)
+
+mysql> select type, case when type='c' then amount else -amount end Amount from transactions;
++------+--------+
+| type | Amount |
++------+--------+
+| c    |  30000 |
+| c    |  30000 |
+| c    |  30000 |
+| c    | 370000 |
+| c    | 370000 |
+| c    | 370000 |
+| d    |  -7000 |
+| d    |  -7500 |
+| d    |  -7000 |
+| d    |  -2000 |
+| d    |  -4000 |
+| d    |  -1500 |
+| d    |  -1000 |
+| c    |    500 |
+| d    |   -500 |
+| c    |   1500 |
+| c    |    200 |
+| d    |  -6000 |
+| d    |  -2000 |
+| c    |   1200 |
+| d    |  -4500 |
+| d    |  -4200 |
+| c    |    600 |
+| c    |    400 |
+| c    |   1200 |
+| c    |   1600 |
+| d    |  -3000 |
+| d    |  -3000 |
+| c    |    600 |
+| d    |  -7000 |
+| c    |    250 |
+| d    |  -5600 |
+| c    |    200 |
++------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(case when storelocation='north' then totalsales end) 'North' from piv
+ot_table group by storelocation;
++---------------+-------+
+| storelocation | North |
++---------------+-------+
+| North         |   914 |
+| Central       |  NULL |
+| South         |  NULL |
+| West          |  NULL |
+| East          |  NULL |
++---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select storelocation, sum(case when storelocation='north' then totalsales end) 'North' from pivot_table;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.pivot_table.storeLocation'; this is incompatible with sql_mode=only_full_group_by
+mysql>
+mysql>
+mysql> select storelocation, sum(case when storelocation='north' then totalsales end) 'North' from pivot_table;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.pivot_table.storeLocation'; this is incompatible with sql_mode=only_full_group_by
+mysql>
+mysql>
+mysql>
+mysql> select storelocation, sum(case when storelocation='north' then totalsales end) over(partition by storelocation) 'North' from pivot_table;
++---------------+-------+
+| storelocation | North |
++---------------+-------+
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| East          |  NULL |
+| East          |  NULL |
+| East          |  NULL |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
++---------------+-------+
+46 rows in set (0.01 sec)
+
+mysql> select count(*) from emp;
++----------+
+| count(*) |
++----------+
+|       28 |
++----------+
+1 row in set (0.02 sec)
+
+mysql> select count(*), sum(1) from emp;
++----------+--------+
+| count(*) | sum(1) |
++----------+--------+
+|       28 |     28 |
++----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), sum(2) from emp;
++----------+--------+
+| count(*) | sum(2) |
++----------+--------+
+|       28 |     56 |
++----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select count(*), sum(2), sum(comm) from emp;
++----------+--------+-----------+
+| count(*) | sum(2) | sum(comm) |
++----------+--------+-----------+
+|       28 |     56 |      8100 |
++----------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(sal), sum(distinct sal)  from emp;
++----------+-------------------+
+| sum(sal) | sum(distinct sal) |
++----------+-------------------+
+|    60700 |             37950 |
++----------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from r;
++------+
+| c1   |
++------+
+|   -2 |
+|    1 |
+|    2 |
+|   -1 |
+|    3 |
+|   -2 |
+|    1 |
+|    2 |
+|    1 |
++------+
+9 rows in set (0.01 sec)
+
+mysql> select * from r1;
++------+
+| c1   |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
++------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_z1        |
++---------------------+
+| a                   |
+| agent               |
+| andor               |
+| b                   |
+| blanktablea         |
+| blanktableb         |
+| blog                |
+| bonus               |
+| books               |
+| candidate           |
+| client              |
+| coalesce            |
+| comments            |
+| company             |
+| customer            |
+| customers           |
+| demodept1           |
+| demodept2           |
+| dept                |
+| dept1               |
+| docs                |
+| doctor              |
+| doctorvisits        |
+| dummy               |
+| duplicate           |
+| emp                 |
+| emp1                |
+| emp2                |
+| emp_attendance      |
+| emp_cards           |
+| emp_phone           |
+| empj                |
+| envelope            |
+| food                |
+| fullname            |
+| hobby               |
+| item                |
+| job_list            |
+| key_parts           |
+| labtestlist         |
+| leadtable           |
+| licence             |
+| location            |
+| mass_table          |
+| medicinelist        |
+| menucard            |
+| nearest             |
+| new                 |
+| newbooks            |
+| nullif              |
+| numbers             |
+| numberstring        |
+| ord                 |
+| orderdetails        |
+| orders              |
+| overtime            |
+| patient             |
+| phonecall           |
+| pivot_table         |
+| plumber             |
+| plumber_service_map |
+| points              |
+| price               |
+| product             |
+| product_sales       |
+| products            |
+| quarterly_revenue   |
+| r                   |
+| r1                  |
+| r2                  |
+| races               |
+| regexpr             |
+| replacedept         |
+| revenue             |
+| rockets             |
+| runners             |
+| runningserver       |
+| sales               |
+| sales_channel       |
+| salespeople         |
+| salesperson         |
+| salgrade            |
+| server              |
+| service             |
+| seta                |
+| setb                |
+| shop                |
+| softdrink           |
+| sort                |
+| sourcenames         |
+| stadium             |
+| states              |
+| station             |
+| status              |
+| stringnumber        |
+| tablea              |
+| tableaa             |
+| tableb              |
+| tablebb             |
+| targetnames         |
+| tasks               |
+| temp1               |
+| traintimetable      |
+| transactions        |
+| vote_response       |
+| votes               |
+| warehouse           |
+| yearly_revenue      |
+| z                   |
++---------------------+
+109 rows in set (0.02 sec)
+
+mysql> select * from tblea;
+ERROR 1146 (42S02): Table 'z1.tblea' doesn't exist
+mysql> select * from tablea;
++------+------+
+| id   | name |
++------+------+
+|    5 | aa   |
+|    1 | a    |
+|    2 | b    |
+|    3 | y    |
+| NULL | d    |
+|    5 | NULL |
+|    1 | NULL |
+|    1 | b    |
+|    8 | a    |
++------+------+
+9 rows in set (0.01 sec)
+
+mysql> select * from tableb;
++------+------+
+| id   | name |
++------+------+
+|    1 | a    |
+|    2 | x    |
+|    4 | b    |
+| NULL | c    |
+|    6 | NULL |
+| NULL | NULL |
+|    7 | z    |
+|    2 | NULL |
+|    5 | z    |
+|    9 | u    |
++------+------+
+10 rows in set (0.01 sec)
+
+mysql> select count(id),count(name), count(*)` from tableb;
+    `> ;
+    `> ^C
+mysql> select count(id),count(name), count(*) from tableb;
++-----------+-------------+----------+
+| count(id) | count(name) | count(*) |
++-----------+-------------+----------+
+|         8 |           7 |       10 |
++-----------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select job, group_concat(name) from emp;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select job, group_concat(name) from emp gtoup by job;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by job' at line 1
+mysql> select job, group_concat(name) from emp group by job;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select job, group_concat(ename) from emp group by job;
++---------------------+-----------------------------------------------+
+| job                 | group_concat(ename)                           |
++---------------------+-----------------------------------------------+
+| ANALYST             | SCOTT,FORD,SUPRIYA                            |
+| CLERK               | SMITH,AARAV,THOMAS,ADAMS,JAMES,MILLER,NATASHA |
+| Compliance officers | GITA,VRUSHALI,SANGITA                         |
+| MANAGER             | JONES,BLAKE,CLARK,HOFFMAN,ALEX                |
+| PRESIDENT           | KING                                          |
+| Public Relation     | SHARMIN,BANDISH                               |
+| SALESMAN            | ALLEN,WARD,MARTIN,TURNER,GRASS,AARUSH         |
+| vice PRESIDENT      | FRED                                          |
++---------------------+-----------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> select job, group_concat(ename order by ename) from emp group by job;
++---------------------+-----------------------------------------------+
+| job                 | group_concat(ename order by ename)            |
++---------------------+-----------------------------------------------+
+| ANALYST             | FORD,SCOTT,SUPRIYA                            |
+| CLERK               | AARAV,ADAMS,JAMES,MILLER,NATASHA,SMITH,THOMAS |
+| Compliance officers | GITA,SANGITA,VRUSHALI                         |
+| MANAGER             | ALEX,BLAKE,CLARK,HOFFMAN,JONES                |
+| PRESIDENT           | KING                                          |
+| Public Relation     | BANDISH,SHARMIN                               |
+| SALESMAN            | AARUSH,ALLEN,GRASS,MARTIN,TURNER,WARD         |
+| vice PRESIDENT      | FRED                                          |
++---------------------+-----------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> select job, group_concat(ename order by ename desc) from emp group by job;
++---------------------+-----------------------------------------------+
+| job                 | group_concat(ename order by ename desc)       |
++---------------------+-----------------------------------------------+
+| ANALYST             | SUPRIYA,SCOTT,FORD                            |
+| CLERK               | THOMAS,SMITH,NATASHA,MILLER,JAMES,ADAMS,AARAV |
+| Compliance officers | VRUSHALI,SANGITA,GITA                         |
+| MANAGER             | JONES,HOFFMAN,CLARK,BLAKE,ALEX                |
+| PRESIDENT           | KING                                          |
+| Public Relation     | SHARMIN,BANDISH                               |
+| SALESMAN            | WARD,TURNER,MARTIN,GRASS,ALLEN,AARUSH         |
+| vice PRESIDENT      | FRED                                          |
++---------------------+-----------------------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> select job, count(*) from emp group by job;
++---------------------+----------+
+| job                 | count(*) |
++---------------------+----------+
+| Compliance officers |        3 |
+| Public Relation     |        2 |
+| CLERK               |        7 |
+| SALESMAN            |        6 |
+| MANAGER             |        5 |
+| ANALYST             |        3 |
+| PRESIDENT           |        1 |
+| vice PRESIDENT      |        1 |
++---------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select job, count(*) from emp group by job where count(*)>5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where count(*)>5' at line 1
+mysql> select job, count(*) from emp where count(*) > 5 group by job
+    -> ;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select job, count(*) from emp group by job
+    -> ;
++---------------------+----------+
+| job                 | count(*) |
++---------------------+----------+
+| Compliance officers |        3 |
+| Public Relation     |        2 |
+| CLERK               |        7 |
+| SALESMAN            |        6 |
+| MANAGER             |        5 |
+| ANALYST             |        3 |
+| PRESIDENT           |        1 |
+| vice PRESIDENT      |        1 |
++---------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select job, count(*) from emp group by job having count(*) > 5;
++----------+----------+
+| job      | count(*) |
++----------+----------+
+| CLERK    |        7 |
+| SALESMAN |        6 |
++----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select job, count(*) R1 from emp group by job having R1 > 5;
++----------+----+
+| job      | R1 |
++----------+----+
+| CLERK    |  7 |
+| SALESMAN |  6 |
++----------+----+
+2 rows in set (0.01 sec)
+
+mysql> set @x :=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @x :=@x + 1 R1,  ename frome emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emp' at line 1
+mysql> select @x :=@x + 1 R1,  ename from emp;
++------+----------+
+| R1   | ename    |
++------+----------+
+|    1 | GITA     |
+|    2 | VRUSHALI |
+|    3 | SHARMIN  |
+|    4 | BANDISH  |
+|    5 | SMITH    |
+|    6 | AARAV    |
+|    7 | THOMAS   |
+|    8 | ALLEN    |
+|    9 | WARD     |
+|   10 | JONES    |
+|   11 | MARTIN   |
+|   12 | BLAKE    |
+|   13 | CLARK    |
+|   14 | SCOTT    |
+|   15 | KING     |
+|   16 | FRED     |
+|   17 | TURNER   |
+|   18 | ADAMS    |
+|   19 | JAMES    |
+|   20 | FORD     |
+|   21 | HOFFMAN  |
+|   22 | GRASS    |
+|   23 | MILLER   |
+|   24 | AARUSH   |
+|   25 | ALEX     |
+|   26 | NATASHA  |
+|   27 | SANGITA  |
+|   28 | SUPRIYA  |
++------+----------+
+28 rows in set, 1 warning (0.01 sec)
+
+mysql> select @x :=@x + 1 R1,  ename from emp;
++------+----------+
+| R1   | ename    |
++------+----------+
+|   29 | GITA     |
+|   30 | VRUSHALI |
+|   31 | SHARMIN  |
+|   32 | BANDISH  |
+|   33 | SMITH    |
+|   34 | AARAV    |
+|   35 | THOMAS   |
+|   36 | ALLEN    |
+|   37 | WARD     |
+|   38 | JONES    |
+|   39 | MARTIN   |
+|   40 | BLAKE    |
+|   41 | CLARK    |
+|   42 | SCOTT    |
+|   43 | KING     |
+|   44 | FRED     |
+|   45 | TURNER   |
+|   46 | ADAMS    |
+|   47 | JAMES    |
+|   48 | FORD     |
+|   49 | HOFFMAN  |
+|   50 | GRASS    |
+|   51 | MILLER   |
+|   52 | AARUSH   |
+|   53 | ALEX     |
+|   54 | NATASHA  |
+|   55 | SANGITA  |
+|   56 | SUPRIYA  |
++------+----------+
+28 rows in set, 1 warning (0.00 sec)
+
+mysql> select @x :=@x + 1 R1,  ename from emp, (select @x:0) T1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':0) T1' at line 1
+mysql> select @x :=@x + 1 R1,  ename from emp, (select @x:=0) T1;
++------+----------+
+| R1   | ename    |
++------+----------+
+|    1 | GITA     |
+|    2 | VRUSHALI |
+|    3 | SHARMIN  |
+|    4 | BANDISH  |
+|    5 | SMITH    |
+|    6 | AARAV    |
+|    7 | THOMAS   |
+|    8 | ALLEN    |
+|    9 | WARD     |
+|   10 | JONES    |
+|   11 | MARTIN   |
+|   12 | BLAKE    |
+|   13 | CLARK    |
+|   14 | SCOTT    |
+|   15 | KING     |
+|   16 | FRED     |
+|   17 | TURNER   |
+|   18 | ADAMS    |
+|   19 | JAMES    |
+|   20 | FORD     |
+|   21 | HOFFMAN  |
+|   22 | GRASS    |
+|   23 | MILLER   |
+|   24 | AARUSH   |
+|   25 | ALEX     |
+|   26 | NATASHA  |
+|   27 | SANGITA  |
+|   28 | SUPRIYA  |
++------+----------+
+28 rows in set, 2 warnings (0.01 sec)
+
+mysql> select @x :=@x + 1 R1,  ename from emp, (select @x:=0) T1;
++------+----------+
+| R1   | ename    |
++------+----------+
+|    1 | GITA     |
+|    2 | VRUSHALI |
+|    3 | SHARMIN  |
+|    4 | BANDISH  |
+|    5 | SMITH    |
+|    6 | AARAV    |
+|    7 | THOMAS   |
+|    8 | ALLEN    |
+|    9 | WARD     |
+|   10 | JONES    |
+|   11 | MARTIN   |
+|   12 | BLAKE    |
+|   13 | CLARK    |
+|   14 | SCOTT    |
+|   15 | KING     |
+|   16 | FRED     |
+|   17 | TURNER   |
+|   18 | ADAMS    |
+|   19 | JAMES    |
+|   20 | FORD     |
+|   21 | HOFFMAN  |
+|   22 | GRASS    |
+|   23 | MILLER   |
+|   24 | AARUSH   |
+|   25 | ALEX     |
+|   26 | NATASHA  |
+|   27 | SANGITA  |
+|   28 | SUPRIYA  |
++------+----------+
+28 rows in set, 2 warnings (0.00 sec)
+
+mysql> select @x :=@x + 1 R1,  ename from emp, (select @x:=0) T1;
++------+----------+
+| R1   | ename    |
++------+----------+
+|    1 | GITA     |
+|    2 | VRUSHALI |
+|    3 | SHARMIN  |
+|    4 | BANDISH  |
+|    5 | SMITH    |
+|    6 | AARAV    |
+|    7 | THOMAS   |
+|    8 | ALLEN    |
+|    9 | WARD     |
+|   10 | JONES    |
+|   11 | MARTIN   |
+|   12 | BLAKE    |
+|   13 | CLARK    |
+|   14 | SCOTT    |
+|   15 | KING     |
+|   16 | FRED     |
+|   17 | TURNER   |
+|   18 | ADAMS    |
+|   19 | JAMES    |
+|   20 | FORD     |
+|   21 | HOFFMAN  |
+|   22 | GRASS    |
+|   23 | MILLER   |
+|   24 | AARUSH   |
+|   25 | ALEX     |
+|   26 | NATASHA  |
+|   27 | SANGITA  |
+|   28 | SUPRIYA  |
++------+----------+
+28 rows in set, 2 warnings (0.00 sec)
+
+mysql> select job, count(*) R1 from emp group by job;
++---------------------+----+
+| job                 | R1 |
++---------------------+----+
+| Compliance officers |  3 |
+| Public Relation     |  2 |
+| CLERK               |  7 |
+| SALESMAN            |  6 |
+| MANAGER             |  5 |
+| ANALYST             |  3 |
+| PRESIDENT           |  1 |
+| vice PRESIDENT      |  1 |
++---------------------+----+
+8 rows in set (0.00 sec)
+
+mysql> select count(*) R1 from emp  having R1 > 5;
++----+
+| R1 |
++----+
+| 28 |
++----+
+1 row in set (0.00 sec)
+
+mysql> select count(*) R1 from emp;
++----+
+| R1 |
++----+
+| 28 |
++----+
+1 row in set (0.01 sec)
+
+mysql> select count(*) R1 from emp  having job='manager';
+ERROR 1054 (42S22): Unknown column 'job' in 'having clause'
+mysql>
+mysql>
+mysql>
+mysql> select job, count(*) R1 from emp  group by job having sal>1000;
+ERROR 1054 (42S22): Unknown column 'sal' in 'having clause'
+mysql> select job, sal, count(*) R1 from emp  group by job having sal>1000;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'z1.emp.SAL' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql>
+mysql> select job, sal, count(*) R1 from emp  group by job, sal having sal>1000;
++---------------------+------+----+
+| job                 | sal  | R1 |
++---------------------+------+----+
+| Compliance officers | 1750 |  3 |
+| Public Relation     | 1750 |  2 |
+| CLERK               | 3350 |  1 |
+| CLERK               | 1750 |  2 |
+| SALESMAN            | 1600 |  1 |
+| SALESMAN            | 1250 |  2 |
+| MANAGER             | 2975 |  1 |
+| MANAGER             | 2850 |  1 |
+| MANAGER             | 2450 |  1 |
+| ANALYST             | 3000 |  2 |
+| PRESIDENT           | 5000 |  1 |
+| vice PRESIDENT      | 5000 |  1 |
+| SALESMAN            | 1500 |  1 |
+| CLERK               | 1100 |  1 |
+| MANAGER             | 4150 |  1 |
+| SALESMAN            | 2575 |  1 |
+| CLERK               | 1300 |  1 |
+| SALESMAN            | 1350 |  1 |
+| MANAGER             | 1250 |  1 |
+| ANALYST             | 1750 |  1 |
++---------------------+------+----+
+20 rows in set (0.00 sec)
+
+mysql> SELECT productname,
+    ->       SUM(CASE WHEN storelocation = 'North' THEN totalsales END) North,
+    ->       SUM(CASE WHEN storelocation = 'South' THEN totalsales END) South,
+    ->       SUM(CASE WHEN storelocation = 'East' THEN totalsales END) East,
+    ->       SUM(CASE WHEN storelocation = 'West' THEN totalsales END) West,
+    ->       SUM(CASE WHEN storelocation = 'Central' THEN totalsales END) Central,
+    ->       SUM(totalsales) TotalSales FROM pivot_table GROUP BY productname;
++-------------+-------+-------+------+------+---------+------------+
+| productname | North | South | East | West | Central | TotalSales |
++-------------+-------+-------+------+------+---------+------------+
+| Chair       |   437 |   376 |  100 |  130 |     218 |       1261 |
+| Desk        |   226 |   136 |  110 |  134 |     120 |        726 |
+| Couch       |   251 |  NULL | NULL |  143 |     218 |        612 |
++-------------+-------+-------+------+------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT storelocation,
+    ->       SUM(CASE WHEN storelocation = 'North' THEN totalsales END) North,
+    ->        FROM pivot_table GROUP BY storelocation;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM pivot_table GROUP BY storelocation' at line 3
+mysql> SELECT storelocation, SUM(CASE WHEN storelocation = 'North' THEN totalsales END) North   FROM pivot_table GROUP BY storelocation;
++---------------+-------+
+| storelocation | North |
++---------------+-------+
+| North         |   914 |
+| Central       |  NULL |
+| South         |  NULL |
+| West          |  NULL |
+| East          |  NULL |
++---------------+-------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT storelocation, SUM(CASE WHEN storelocation = 'North' THEN totalsales END) over(partition by storelocation) North   FROM pivot_table;
++---------------+-------+
+| storelocation | North |
++---------------+-------+
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| Central       |  NULL |
+| East          |  NULL |
+| East          |  NULL |
+| East          |  NULL |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| North         |   914 |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| South         |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
+| West          |  NULL |
++---------------+-------+
+46 rows in set (0.00 sec)
+
+mysql> SELECT distinct storelocation, SUM(CASE WHEN storelocation = 'North' THEN totalsales END) over(
+partition by storelocation) North   FROM pivot_table;
++---------------+-------+
+| storelocation | North |
++---------------+-------+
+| Central       |  NULL |
+| East          |  NULL |
+| North         |   914 |
+| South         |  NULL |
+| West          |  NULL |
++---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT  SUM(CASE WHEN storelocation = 'North' THEN totalsales END) over(partition by storelocat
+ion) North   FROM pivot_table;
++-------+
+| North |
++-------+
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|   914 |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
+|  NULL |
++-------+
+46 rows in set (0.00 sec)
+
+mysql> SELECT  SUM(CASE WHEN storelocation = 'North' THEN totalsales END) North FROM pivot_table;
++-------+
+| North |
++-------+
+|   914 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT  SUM(CASE WHEN storelocation = 'North' THEN totalsales END) North,SUM(CASE WHEN storelocation = 'South' THEN totalsales END) South FROM pivot_table;
++-------+-------+
+| North | South |
++-------+-------+
+|   914 |   512 |
++-------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select * from timetable;
+ERROR 1146 (42S02): Table 'z1.timetable' doesn't exist
+mysql> select * from traintimetable;
++----+---------+----------------------------+----------+----------+
+| id | trainID | stationname                | distance | timing   |
++----+---------+----------------------------+----------+----------+
+|  1 |   22863 | mumbai central             |        0 | 08:30:00 |
+|  2 |   22863 | surat                      |      262 | 12:40:13 |
+|  3 |   22863 | baroda                     |      129 | 14:42:00 |
+|  4 |   22863 | ahmedabad JN               |      100 | 17:10:00 |
+|  5 |   22863 | surendranagar              |      130 | 20:00:00 |
+|  6 |   22863 | rajkot JN                  |      116 | 23:40:00 |
+|  7 |   22863 | hapa                       |       75 | 00:05:00 |
+|  8 |   22868 | pune JN                    |        0 | 17:20:00 |
+|  9 |   22868 | uruli                      |       30 | 17:47:13 |
+| 10 |   22868 | daund chord line           |     87.1 | 18:27:00 |
+| 11 |   22868 | ahmadnagar                 |       71 | 20:10:00 |
+| 12 |   22868 | belapur                    |       61 | 21:15:00 |
+| 13 |   22868 | kopargaon                  |       44 | 21:57:00 |
+| 14 |   22868 | manmad JN                  |    41.84 | 23:25:13 |
+| 15 |   22868 | daund chord line           |      249 | 18:27:00 |
+| 16 |   22868 | bhopal                     |      728 | 08:55:00 |
+| 17 |   12267 | mumbai central             |        0 | 23:00:00 |
+| 18 |   12267 | ahmedabad JN               |      534 | 05:00:00 |
+| 19 |   12267 | surendranagar              |      131 | 07:20:00 |
+| 20 |   12267 | rajkot JN                  |      106 | 09:15:00 |
+| 21 |   12267 | hapa                       |      191 | 12:45:00 |
+| 22 |   12307 | HOWRAH JN                  |     2271 | 23:25:00 |
+| 23 |   12307 | BARDDHAMAN JN              |     99.6 | 00:31:00 |
+| 24 |   12307 | ASANSOL JN                 |      107 | 02:09:00 |
+| 25 |   12307 | DHANBAD JN                 |       65 | 03:25:00 |
+| 26 |   12307 | PARASNATH                  |       49 | 04:02:00 |
+| 27 |   12307 | KODERMA                    |      115 | 04:54:00 |
+| 28 |   12307 | GAYA JN                    |       76 | 06:30:00 |
+| 29 |   12307 | ANUGRAHA NARAYAN ROAD      |      115 | 07:20:00 |
+| 30 |   12307 | DEHRI ON SONE              |       17 | 07:40:00 |
+| 31 |   12307 | SASARAM                    |       55 | 07:58:00 |
+| 32 |   12307 | BHABUA ROAD                |       31 | 08:38:00 |
+| 33 |   12307 | PT DEEN DAYAL UPADHYAYA JN |       90 | 09:55:00 |
+| 34 |   12307 | MIRZAPUR                   |    155.5 | 10:55:00 |
+| 35 |   12307 | PRAYAGRAJ JN               |       99 | 12:20:00 |
+| 36 |   12307 | FATEHPUR                   |      155 | 13:32:00 |
+| 37 |   12307 | KANPUR CENTRAL             |       75 | 14:55:00 |
+| 38 |   12307 | ETAWAH                     |       47 | 16:27:00 |
+| 39 |   12307 | TUNDLA JN                  |       54 | 18:35:00 |
+| 40 |   12307 | AGRA FORT                  |       21 | 19:30:00 |
+| 41 |   12307 | ACHHNERA JN                |      227 | 20:14:00 |
+| 42 |   12307 | BHARATPUR JN               |      746 | 20:44:00 |
+| 43 |   12307 | GAYA JN                    |       90 | 06:30:00 |
+| 44 |   12307 | JAIPUR                     |       33 | 00:05:00 |
+| 45 |   12307 | NAWA CITY                  |       14 | 01:38:00 |
+| 46 |   12307 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 47 |   12307 | MAKRANA JN                 |       59 | 02:03:00 |
+| 48 |   12307 | DEGANA JN                  |      104 | 02:37:00 |
+| 49 |   12307 | MERTA ROAD JN              |        0 | 03:15:00 |
+| 50 |   12307 | JODHPUR JN                 |       89 | 04:20:00 |
+| 51 |   12308 | JAIPUR                     |       21 | 00:05:00 |
+| 52 |   12308 | NAWA CITY                  |       14 | 01:38:00 |
+| 53 |   12308 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 54 |   12308 | MAKRANA JN                 |       46 | 02:03:00 |
+| 55 |   12308 | DEGANA JN                  |      103 | 02:37:00 |
+| 56 |   12308 | MERTA ROAD JN              |     NULL | 03:15:00 |
+| 57 |   12308 | JODHPUR JN                 |     NULL | 04:20:00 |
++----+---------+----------------------------+----------+----------+
+57 rows in set (0.01 sec)
+
+mysql> select station,lead(station) over(partition by 22863) from traintimetable;
+ERROR 1054 (42S22): Unknown column 'station' in 'field list'
+mysql> select station,lead(station) over(partition by trainID) from traintimetable;
+ERROR 1054 (42S22): Unknown column 'station' in 'field list'
+mysql> select stationname,lead(stationname) over(partition by trainID) from traintimetable;
++----------------------------+----------------------------------------------+
+| stationname                | lead(stationname) over(partition by trainID) |
++----------------------------+----------------------------------------------+
+| hapa                       | mumbai central                               |
+| mumbai central             | ahmedabad JN                                 |
+| ahmedabad JN               | surendranagar                                |
+| surendranagar              | rajkot JN                                    |
+| rajkot JN                  | NULL                                         |
+| PRAYAGRAJ JN               | FATEHPUR                                     |
+| FATEHPUR                   | KANPUR CENTRAL                               |
+| KANPUR CENTRAL             | ETAWAH                                       |
+| ETAWAH                     | TUNDLA JN                                    |
+| TUNDLA JN                  | AGRA FORT                                    |
+| AGRA FORT                  | ACHHNERA JN                                  |
+| ACHHNERA JN                | ANUGRAHA NARAYAN ROAD                        |
+| ANUGRAHA NARAYAN ROAD      | BHARATPUR JN                                 |
+| BHARATPUR JN               | GAYA JN                                      |
+| GAYA JN                    | JAIPUR                                       |
+| JAIPUR                     | NAWA CITY                                    |
+| NAWA CITY                  | KUCHAMAN CITY                                |
+| KUCHAMAN CITY              | MAKRANA JN                                   |
+| MAKRANA JN                 | DEGANA JN                                    |
+| DEGANA JN                  | MERTA ROAD JN                                |
+| MERTA ROAD JN              | HOWRAH JN                                    |
+| HOWRAH JN                  | BARDDHAMAN JN                                |
+| BARDDHAMAN JN              | ASANSOL JN                                   |
+| ASANSOL JN                 | DHANBAD JN                                   |
+| DHANBAD JN                 | PARASNATH                                    |
+| PARASNATH                  | KODERMA                                      |
+| KODERMA                    | GAYA JN                                      |
+| GAYA JN                    | JODHPUR JN                                   |
+| JODHPUR JN                 | DEHRI ON SONE                                |
+| DEHRI ON SONE              | SASARAM                                      |
+| SASARAM                    | BHABUA ROAD                                  |
+| BHABUA ROAD                | PT DEEN DAYAL UPADHYAYA JN                   |
+| PT DEEN DAYAL UPADHYAYA JN | MIRZAPUR                                     |
+| MIRZAPUR                   | NULL                                         |
+| JAIPUR                     | NAWA CITY                                    |
+| NAWA CITY                  | KUCHAMAN CITY                                |
+| KUCHAMAN CITY              | MAKRANA JN                                   |
+| MAKRANA JN                 | DEGANA JN                                    |
+| DEGANA JN                  | MERTA ROAD JN                                |
+| MERTA ROAD JN              | JODHPUR JN                                   |
+| JODHPUR JN                 | NULL                                         |
+| mumbai central             | surat                                        |
+| surat                      | baroda                                       |
+| baroda                     | ahmedabad JN                                 |
+| ahmedabad JN               | surendranagar                                |
+| surendranagar              | rajkot JN                                    |
+| rajkot JN                  | hapa                                         |
+| hapa                       | NULL                                         |
+| uruli                      | daund chord line                             |
+| daund chord line           | ahmadnagar                                   |
+| ahmadnagar                 | belapur                                      |
+| belapur                    | kopargaon                                    |
+| kopargaon                  | manmad JN                                    |
+| manmad JN                  | daund chord line                             |
+| daund chord line           | bhopal                                       |
+| bhopal                     | pune JN                                      |
+| pune JN                    | NULL                                         |
++----------------------------+----------------------------------------------+
+57 rows in set (0.01 sec)
+
+mysql> select stationname,lead(stationname) over(partition by trainID order by id) from traintimetable
+;
++----------------------------+----------------------------------------------------------+
+| stationname                | lead(stationname) over(partition by trainID order by id) |
++----------------------------+----------------------------------------------------------+
+| mumbai central             | ahmedabad JN                                             |
+| ahmedabad JN               | surendranagar                                            |
+| surendranagar              | rajkot JN                                                |
+| rajkot JN                  | hapa                                                     |
+| hapa                       | NULL                                                     |
+| HOWRAH JN                  | BARDDHAMAN JN                                            |
+| BARDDHAMAN JN              | ASANSOL JN                                               |
+| ASANSOL JN                 | DHANBAD JN                                               |
+| DHANBAD JN                 | PARASNATH                                                |
+| PARASNATH                  | KODERMA                                                  |
+| KODERMA                    | GAYA JN                                                  |
+| GAYA JN                    | ANUGRAHA NARAYAN ROAD                                    |
+| ANUGRAHA NARAYAN ROAD      | DEHRI ON SONE                                            |
+| DEHRI ON SONE              | SASARAM                                                  |
+| SASARAM                    | BHABUA ROAD                                              |
+| BHABUA ROAD                | PT DEEN DAYAL UPADHYAYA JN                               |
+| PT DEEN DAYAL UPADHYAYA JN | MIRZAPUR                                                 |
+| MIRZAPUR                   | PRAYAGRAJ JN                                             |
+| PRAYAGRAJ JN               | FATEHPUR                                                 |
+| FATEHPUR                   | KANPUR CENTRAL                                           |
+| KANPUR CENTRAL             | ETAWAH                                                   |
+| ETAWAH                     | TUNDLA JN                                                |
+| TUNDLA JN                  | AGRA FORT                                                |
+| AGRA FORT                  | ACHHNERA JN                                              |
+| ACHHNERA JN                | BHARATPUR JN                                             |
+| BHARATPUR JN               | GAYA JN                                                  |
+| GAYA JN                    | JAIPUR                                                   |
+| JAIPUR                     | NAWA CITY                                                |
+| NAWA CITY                  | KUCHAMAN CITY                                            |
+| KUCHAMAN CITY              | MAKRANA JN                                               |
+| MAKRANA JN                 | DEGANA JN                                                |
+| DEGANA JN                  | MERTA ROAD JN                                            |
+| MERTA ROAD JN              | JODHPUR JN                                               |
+| JODHPUR JN                 | NULL                                                     |
+| JAIPUR                     | NAWA CITY                                                |
+| NAWA CITY                  | KUCHAMAN CITY                                            |
+| KUCHAMAN CITY              | MAKRANA JN                                               |
+| MAKRANA JN                 | DEGANA JN                                                |
+| DEGANA JN                  | MERTA ROAD JN                                            |
+| MERTA ROAD JN              | JODHPUR JN                                               |
+| JODHPUR JN                 | NULL                                                     |
+| mumbai central             | surat                                                    |
+| surat                      | baroda                                                   |
+| baroda                     | ahmedabad JN                                             |
+| ahmedabad JN               | surendranagar                                            |
+| surendranagar              | rajkot JN                                                |
+| rajkot JN                  | hapa                                                     |
+| hapa                       | NULL                                                     |
+| pune JN                    | uruli                                                    |
+| uruli                      | daund chord line                                         |
+| daund chord line           | ahmadnagar                                               |
+| ahmadnagar                 | belapur                                                  |
+| belapur                    | kopargaon                                                |
+| kopargaon                  | manmad JN                                                |
+| manmad JN                  | daund chord line                                         |
+| daund chord line           | bhopal                                                   |
+| bhopal                     | NULL                                                     |
++----------------------------+----------------------------------------------------------+
+57 rows in set (0.00 sec)
+
+mysql> select * from traintimetable;
++----+---------+----------------------------+----------+----------+
+| id | trainID | stationname                | distance | timing   |
++----+---------+----------------------------+----------+----------+
+|  1 |   22863 | mumbai central             |        0 | 08:30:00 |
+|  2 |   22863 | surat                      |      262 | 12:40:13 |
+|  3 |   22863 | baroda                     |      129 | 14:42:00 |
+|  4 |   22863 | ahmedabad JN               |      100 | 17:10:00 |
+|  5 |   22863 | surendranagar              |      130 | 20:00:00 |
+|  6 |   22863 | rajkot JN                  |      116 | 23:40:00 |
+|  7 |   22863 | hapa                       |       75 | 00:05:00 |
+|  8 |   22868 | pune JN                    |        0 | 17:20:00 |
+|  9 |   22868 | uruli                      |       30 | 17:47:13 |
+| 10 |   22868 | daund chord line           |     87.1 | 18:27:00 |
+| 11 |   22868 | ahmadnagar                 |       71 | 20:10:00 |
+| 12 |   22868 | belapur                    |       61 | 21:15:00 |
+| 13 |   22868 | kopargaon                  |       44 | 21:57:00 |
+| 14 |   22868 | manmad JN                  |    41.84 | 23:25:13 |
+| 15 |   22868 | daund chord line           |      249 | 18:27:00 |
+| 16 |   22868 | bhopal                     |      728 | 08:55:00 |
+| 17 |   12267 | mumbai central             |        0 | 23:00:00 |
+| 18 |   12267 | ahmedabad JN               |      534 | 05:00:00 |
+| 19 |   12267 | surendranagar              |      131 | 07:20:00 |
+| 20 |   12267 | rajkot JN                  |      106 | 09:15:00 |
+| 21 |   12267 | hapa                       |      191 | 12:45:00 |
+| 22 |   12307 | HOWRAH JN                  |     2271 | 23:25:00 |
+| 23 |   12307 | BARDDHAMAN JN              |     99.6 | 00:31:00 |
+| 24 |   12307 | ASANSOL JN                 |      107 | 02:09:00 |
+| 25 |   12307 | DHANBAD JN                 |       65 | 03:25:00 |
+| 26 |   12307 | PARASNATH                  |       49 | 04:02:00 |
+| 27 |   12307 | KODERMA                    |      115 | 04:54:00 |
+| 28 |   12307 | GAYA JN                    |       76 | 06:30:00 |
+| 29 |   12307 | ANUGRAHA NARAYAN ROAD      |      115 | 07:20:00 |
+| 30 |   12307 | DEHRI ON SONE              |       17 | 07:40:00 |
+| 31 |   12307 | SASARAM                    |       55 | 07:58:00 |
+| 32 |   12307 | BHABUA ROAD                |       31 | 08:38:00 |
+| 33 |   12307 | PT DEEN DAYAL UPADHYAYA JN |       90 | 09:55:00 |
+| 34 |   12307 | MIRZAPUR                   |    155.5 | 10:55:00 |
+| 35 |   12307 | PRAYAGRAJ JN               |       99 | 12:20:00 |
+| 36 |   12307 | FATEHPUR                   |      155 | 13:32:00 |
+| 37 |   12307 | KANPUR CENTRAL             |       75 | 14:55:00 |
+| 38 |   12307 | ETAWAH                     |       47 | 16:27:00 |
+| 39 |   12307 | TUNDLA JN                  |       54 | 18:35:00 |
+| 40 |   12307 | AGRA FORT                  |       21 | 19:30:00 |
+| 41 |   12307 | ACHHNERA JN                |      227 | 20:14:00 |
+| 42 |   12307 | BHARATPUR JN               |      746 | 20:44:00 |
+| 43 |   12307 | GAYA JN                    |       90 | 06:30:00 |
+| 44 |   12307 | JAIPUR                     |       33 | 00:05:00 |
+| 45 |   12307 | NAWA CITY                  |       14 | 01:38:00 |
+| 46 |   12307 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 47 |   12307 | MAKRANA JN                 |       59 | 02:03:00 |
+| 48 |   12307 | DEGANA JN                  |      104 | 02:37:00 |
+| 49 |   12307 | MERTA ROAD JN              |        0 | 03:15:00 |
+| 50 |   12307 | JODHPUR JN                 |       89 | 04:20:00 |
+| 51 |   12308 | JAIPUR                     |       21 | 00:05:00 |
+| 52 |   12308 | NAWA CITY                  |       14 | 01:38:00 |
+| 53 |   12308 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 54 |   12308 | MAKRANA JN                 |       46 | 02:03:00 |
+| 55 |   12308 | DEGANA JN                  |      103 | 02:37:00 |
+| 56 |   12308 | MERTA ROAD JN              |     NULL | 03:15:00 |
+| 57 |   12308 | JODHPUR JN                 |     NULL | 04:20:00 |
++----+---------+----------------------------+----------+----------+
+57 rows in set (0.00 sec)
+
+mysql> select station,trainID,lead(station) over(partition by trainID order by id) from traintimetable
+;
+ERROR 1054 (42S22): Unknown column 'station' in 'field list'
+mysql> select stationname,trainID,lead(stationname) over(partition by trainID order by id) from traint
+imetable;
++----------------------------+---------+----------------------------------------------------------+
+| stationname                | trainID | lead(stationname) over(partition by trainID order by id) |
++----------------------------+---------+----------------------------------------------------------+
+| mumbai central             |   12267 | ahmedabad JN                                             |
+| ahmedabad JN               |   12267 | surendranagar                                            |
+| surendranagar              |   12267 | rajkot JN                                                |
+| rajkot JN                  |   12267 | hapa                                                     |
+| hapa                       |   12267 | NULL                                                     |
+| HOWRAH JN                  |   12307 | BARDDHAMAN JN                                            |
+| BARDDHAMAN JN              |   12307 | ASANSOL JN                                               |
+| ASANSOL JN                 |   12307 | DHANBAD JN                                               |
+| DHANBAD JN                 |   12307 | PARASNATH                                                |
+| PARASNATH                  |   12307 | KODERMA                                                  |
+| KODERMA                    |   12307 | GAYA JN                                                  |
+| GAYA JN                    |   12307 | ANUGRAHA NARAYAN ROAD                                    |
+| ANUGRAHA NARAYAN ROAD      |   12307 | DEHRI ON SONE                                            |
+| DEHRI ON SONE              |   12307 | SASARAM                                                  |
+| SASARAM                    |   12307 | BHABUA ROAD                                              |
+| BHABUA ROAD                |   12307 | PT DEEN DAYAL UPADHYAYA JN                               |
+| PT DEEN DAYAL UPADHYAYA JN |   12307 | MIRZAPUR                                                 |
+| MIRZAPUR                   |   12307 | PRAYAGRAJ JN                                             |
+| PRAYAGRAJ JN               |   12307 | FATEHPUR                                                 |
+| FATEHPUR                   |   12307 | KANPUR CENTRAL                                           |
+| KANPUR CENTRAL             |   12307 | ETAWAH                                                   |
+| ETAWAH                     |   12307 | TUNDLA JN                                                |
+| TUNDLA JN                  |   12307 | AGRA FORT                                                |
+| AGRA FORT                  |   12307 | ACHHNERA JN                                              |
+| ACHHNERA JN                |   12307 | BHARATPUR JN                                             |
+| BHARATPUR JN               |   12307 | GAYA JN                                                  |
+| GAYA JN                    |   12307 | JAIPUR                                                   |
+| JAIPUR                     |   12307 | NAWA CITY                                                |
+| NAWA CITY                  |   12307 | KUCHAMAN CITY                                            |
+| KUCHAMAN CITY              |   12307 | MAKRANA JN                                               |
+| MAKRANA JN                 |   12307 | DEGANA JN                                                |
+| DEGANA JN                  |   12307 | MERTA ROAD JN                                            |
+| MERTA ROAD JN              |   12307 | JODHPUR JN                                               |
+| JODHPUR JN                 |   12307 | NULL                                                     |
+| JAIPUR                     |   12308 | NAWA CITY                                                |
+| NAWA CITY                  |   12308 | KUCHAMAN CITY                                            |
+| KUCHAMAN CITY              |   12308 | MAKRANA JN                                               |
+| MAKRANA JN                 |   12308 | DEGANA JN                                                |
+| DEGANA JN                  |   12308 | MERTA ROAD JN                                            |
+| MERTA ROAD JN              |   12308 | JODHPUR JN                                               |
+| JODHPUR JN                 |   12308 | NULL                                                     |
+| mumbai central             |   22863 | surat                                                    |
+| surat                      |   22863 | baroda                                                   |
+| baroda                     |   22863 | ahmedabad JN                                             |
+| ahmedabad JN               |   22863 | surendranagar                                            |
+| surendranagar              |   22863 | rajkot JN                                                |
+| rajkot JN                  |   22863 | hapa                                                     |
+| hapa                       |   22863 | NULL                                                     |
+| pune JN                    |   22868 | uruli                                                    |
+| uruli                      |   22868 | daund chord line                                         |
+| daund chord line           |   22868 | ahmadnagar                                               |
+| ahmadnagar                 |   22868 | belapur                                                  |
+| belapur                    |   22868 | kopargaon                                                |
+| kopargaon                  |   22868 | manmad JN                                                |
+| manmad JN                  |   22868 | daund chord line                                         |
+| daund chord line           |   22868 | bhopal                                                   |
+| bhopal                     |   22868 | NULL                                                     |
++----------------------------+---------+----------------------------------------------------------+
+57 rows in set (0.00 sec)
+
+mysql> select stationname,trainID,lead(stationname) over(partition by trainID ) from traintimetable;
++----------------------------+---------+-----------------------------------------------+
+| stationname                | trainID | lead(stationname) over(partition by trainID ) |
++----------------------------+---------+-----------------------------------------------+
+| hapa                       |   12267 | mumbai central                                |
+| mumbai central             |   12267 | ahmedabad JN                                  |
+| ahmedabad JN               |   12267 | surendranagar                                 |
+| surendranagar              |   12267 | rajkot JN                                     |
+| rajkot JN                  |   12267 | NULL                                          |
+| PRAYAGRAJ JN               |   12307 | FATEHPUR                                      |
+| FATEHPUR                   |   12307 | KANPUR CENTRAL                                |
+| KANPUR CENTRAL             |   12307 | ETAWAH                                        |
+| ETAWAH                     |   12307 | TUNDLA JN                                     |
+| TUNDLA JN                  |   12307 | AGRA FORT                                     |
+| AGRA FORT                  |   12307 | ACHHNERA JN                                   |
+| ACHHNERA JN                |   12307 | ANUGRAHA NARAYAN ROAD                         |
+| ANUGRAHA NARAYAN ROAD      |   12307 | BHARATPUR JN                                  |
+| BHARATPUR JN               |   12307 | GAYA JN                                       |
+| GAYA JN                    |   12307 | JAIPUR                                        |
+| JAIPUR                     |   12307 | NAWA CITY                                     |
+| NAWA CITY                  |   12307 | KUCHAMAN CITY                                 |
+| KUCHAMAN CITY              |   12307 | MAKRANA JN                                    |
+| MAKRANA JN                 |   12307 | DEGANA JN                                     |
+| DEGANA JN                  |   12307 | MERTA ROAD JN                                 |
+| MERTA ROAD JN              |   12307 | HOWRAH JN                                     |
+| HOWRAH JN                  |   12307 | BARDDHAMAN JN                                 |
+| BARDDHAMAN JN              |   12307 | ASANSOL JN                                    |
+| ASANSOL JN                 |   12307 | DHANBAD JN                                    |
+| DHANBAD JN                 |   12307 | PARASNATH                                     |
+| PARASNATH                  |   12307 | KODERMA                                       |
+| KODERMA                    |   12307 | GAYA JN                                       |
+| GAYA JN                    |   12307 | JODHPUR JN                                    |
+| JODHPUR JN                 |   12307 | DEHRI ON SONE                                 |
+| DEHRI ON SONE              |   12307 | SASARAM                                       |
+| SASARAM                    |   12307 | BHABUA ROAD                                   |
+| BHABUA ROAD                |   12307 | PT DEEN DAYAL UPADHYAYA JN                    |
+| PT DEEN DAYAL UPADHYAYA JN |   12307 | MIRZAPUR                                      |
+| MIRZAPUR                   |   12307 | NULL                                          |
+| JAIPUR                     |   12308 | NAWA CITY                                     |
+| NAWA CITY                  |   12308 | KUCHAMAN CITY                                 |
+| KUCHAMAN CITY              |   12308 | MAKRANA JN                                    |
+| MAKRANA JN                 |   12308 | DEGANA JN                                     |
+| DEGANA JN                  |   12308 | MERTA ROAD JN                                 |
+| MERTA ROAD JN              |   12308 | JODHPUR JN                                    |
+| JODHPUR JN                 |   12308 | NULL                                          |
+| mumbai central             |   22863 | surat                                         |
+| surat                      |   22863 | baroda                                        |
+| baroda                     |   22863 | ahmedabad JN                                  |
+| ahmedabad JN               |   22863 | surendranagar                                 |
+| surendranagar              |   22863 | rajkot JN                                     |
+| rajkot JN                  |   22863 | hapa                                          |
+| hapa                       |   22863 | NULL                                          |
+| uruli                      |   22868 | daund chord line                              |
+| daund chord line           |   22868 | ahmadnagar                                    |
+| ahmadnagar                 |   22868 | belapur                                       |
+| belapur                    |   22868 | kopargaon                                     |
+| kopargaon                  |   22868 | manmad JN                                     |
+| manmad JN                  |   22868 | daund chord line                              |
+| daund chord line           |   22868 | bhopal                                        |
+| bhopal                     |   22868 | pune JN                                       |
+| pune JN                    |   22868 | NULL                                          |
++----------------------------+---------+-----------------------------------------------+
+57 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select stationname,trainID,lead(stationname) over(partition by trainID order by id ) from train
+timetable;
++----------------------------+---------+-----------------------------------------------------------+
+| stationname                | trainID | lead(stationname) over(partition by trainID order by id ) |
++----------------------------+---------+-----------------------------------------------------------+
+| mumbai central             |   12267 | ahmedabad JN                                              |
+| ahmedabad JN               |   12267 | surendranagar                                             |
+| surendranagar              |   12267 | rajkot JN                                                 |
+| rajkot JN                  |   12267 | hapa                                                      |
+| hapa                       |   12267 | NULL                                                      |
+| HOWRAH JN                  |   12307 | BARDDHAMAN JN                                             |
+| BARDDHAMAN JN              |   12307 | ASANSOL JN                                                |
+| ASANSOL JN                 |   12307 | DHANBAD JN                                                |
+| DHANBAD JN                 |   12307 | PARASNATH                                                 |
+| PARASNATH                  |   12307 | KODERMA                                                   |
+| KODERMA                    |   12307 | GAYA JN                                                   |
+| GAYA JN                    |   12307 | ANUGRAHA NARAYAN ROAD                                     |
+| ANUGRAHA NARAYAN ROAD      |   12307 | DEHRI ON SONE                                             |
+| DEHRI ON SONE              |   12307 | SASARAM                                                   |
+| SASARAM                    |   12307 | BHABUA ROAD                                               |
+| BHABUA ROAD                |   12307 | PT DEEN DAYAL UPADHYAYA JN                                |
+| PT DEEN DAYAL UPADHYAYA JN |   12307 | MIRZAPUR                                                  |
+| MIRZAPUR                   |   12307 | PRAYAGRAJ JN                                              |
+| PRAYAGRAJ JN               |   12307 | FATEHPUR                                                  |
+| FATEHPUR                   |   12307 | KANPUR CENTRAL                                            |
+| KANPUR CENTRAL             |   12307 | ETAWAH                                                    |
+| ETAWAH                     |   12307 | TUNDLA JN                                                 |
+| TUNDLA JN                  |   12307 | AGRA FORT                                                 |
+| AGRA FORT                  |   12307 | ACHHNERA JN                                               |
+| ACHHNERA JN                |   12307 | BHARATPUR JN                                              |
+| BHARATPUR JN               |   12307 | GAYA JN                                                   |
+| GAYA JN                    |   12307 | JAIPUR                                                    |
+| JAIPUR                     |   12307 | NAWA CITY                                                 |
+| NAWA CITY                  |   12307 | KUCHAMAN CITY                                             |
+| KUCHAMAN CITY              |   12307 | MAKRANA JN                                                |
+| MAKRANA JN                 |   12307 | DEGANA JN                                                 |
+| DEGANA JN                  |   12307 | MERTA ROAD JN                                             |
+| MERTA ROAD JN              |   12307 | JODHPUR JN                                                |
+| JODHPUR JN                 |   12307 | NULL                                                      |
+| JAIPUR                     |   12308 | NAWA CITY                                                 |
+| NAWA CITY                  |   12308 | KUCHAMAN CITY                                             |
+| KUCHAMAN CITY              |   12308 | MAKRANA JN                                                |
+| MAKRANA JN                 |   12308 | DEGANA JN                                                 |
+| DEGANA JN                  |   12308 | MERTA ROAD JN                                             |
+| MERTA ROAD JN              |   12308 | JODHPUR JN                                                |
+| JODHPUR JN                 |   12308 | NULL                                                      |
+| mumbai central             |   22863 | surat                                                     |
+| surat                      |   22863 | baroda                                                    |
+| baroda                     |   22863 | ahmedabad JN                                              |
+| ahmedabad JN               |   22863 | surendranagar                                             |
+| surendranagar              |   22863 | rajkot JN                                                 |
+| rajkot JN                  |   22863 | hapa                                                      |
+| hapa                       |   22863 | NULL                                                      |
+| pune JN                    |   22868 | uruli                                                     |
+| uruli                      |   22868 | daund chord line                                          |
+| daund chord line           |   22868 | ahmadnagar                                                |
+| ahmadnagar                 |   22868 | belapur                                                   |
+| belapur                    |   22868 | kopargaon                                                 |
+| kopargaon                  |   22868 | manmad JN                                                 |
+| manmad JN                  |   22868 | daund chord line                                          |
+| daund chord line           |   22868 | bhopal                                                    |
+| bhopal                     |   22868 | NULL                                                      |
++----------------------------+---------+-----------------------------------------------------------+
+57 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select * from pivot_table;
++----+-------------+---------------+------------+
+| id | productName | storeLocation | totalSales |
++----+-------------+---------------+------------+
+|  1 | Chair       | North         |         55 |
+|  2 | Desk        | Central       |        120 |
+|  3 | Couch       | Central       |         78 |
+|  4 | Chair       | South         |         23 |
+|  5 | Chair       | South         |         10 |
+|  6 | Chair       | North         |         98 |
+|  7 | Desk        | West          |         61 |
+|  8 | Couch       | North         |        180 |
+|  9 | Chair       | South         |         14 |
+| 10 | Desk        | North         |         45 |
+| 11 | Chair       | North         |         87 |
+| 12 | Chair       | Central       |         34 |
+| 13 | Desk        | South         |         42 |
+| 14 | Couch       | West          |         58 |
+| 15 | Couch       | Central       |         27 |
+| 16 | Chair       | South         |         91 |
+| 17 | Chair       | West          |         82 |
+| 18 | Chair       | North         |         37 |
+| 19 | Desk        | North         |         68 |
+| 20 | Couch       | Central       |         54 |
+| 21 | Chair       | South         |         81 |
+| 22 | Desk        | North         |         25 |
+| 23 | Chair       | North         |         46 |
+| 24 | Chair       | Central       |        121 |
+| 25 | Desk        | South         |         85 |
+| 26 | Couch       | North         |         43 |
+| 27 | Desk        | West          |         10 |
+| 28 | Chair       | North         |          5 |
+| 29 | Chair       | Central       |         16 |
+| 30 | Desk        | South         |          9 |
+| 31 | Couch       | West          |         22 |
+| 32 | Couch       | Central       |         59 |
+| 33 | Chair       | South         |         76 |
+| 34 | Chair       | West          |         48 |
+| 35 | Chair       | North         |         19 |
+| 36 | Desk        | North         |          3 |
+| 37 | Couch       | West          |         63 |
+| 38 | Chair       | South         |         81 |
+| 39 | Desk        | North         |         85 |
+| 40 | Chair       | North         |         90 |
+| 41 | Chair       | Central       |         47 |
+| 42 | Desk        | West          |         63 |
+| 43 | Couch       | North         |         28 |
+| 44 | Chair       | East          |         89 |
+| 45 | Chair       | East          |         11 |
+| 46 | Desk        | East          |        110 |
++----+-------------+---------------+------------+
+46 rows in set (0.00 sec)
+
+mysql> select sum(totalsales) from pivot_table where storeLocation='north';
++-----------------+
+| sum(totalsales) |
++-----------------+
+|             914 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select  storelocation, sum(totalsales) from pivot_table where storeLocation='north';
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| North         |             914 |
++---------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select  storelocation, sum(totalsales) from pivot_table where storeLocation='south';
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| South         |             512 |
++---------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select  storelocation, sum(totalsales) from pivot_table where storeLocation='south';
++---------------+-----------------+
+| storelocation | sum(totalsales) |
++---------------+-----------------+
+| South         |             512 |
++---------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select  storelocation, sum(case when storeLocation='south' then totalsales) South from pivot_table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') South from pivot_table' at line 1
+mysql> select  storelocation, sum(case when storeLocation='south' then totalsales end) South from pivo
+t_table;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.pivot_table.storeLocation'; this is incompatible with sql_mode=only_full_group_by
+mysql> select  storelocation, sum(case when storeLocation='south' then totalsales end) South from pivot_table;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'z1.pivot_table.storeLocation'; this is incompatible with sql_mode=only_full_group_by
+mysql>
+mysql> select  sum(case when storeLocation='south' then totalsales end) South from pivot_table;
++-------+
+| South |
++-------+
+|   512 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select  sum(case when storeLocation='south' then totalsales end) South, sum(case when storeLocation='north' then totalsales end) North from pivot_table;
++-------+-------+
+| South | North |
++-------+-------+
+|   512 |   914 |
++-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select  sum(case when storeLocation='south' then totalsales end) South, sum(case when  storeLocation = 'north' then totalsales end) North, sum(case when  storeLocation = 'west' then totalsales end) West from pivot_table;
++-------+-------+------+
+| South | North | West |
++-------+-------+------+
+|   512 |   914 |  407 |
++-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from pivot_Table;
++----+-------------+---------------+------------+
+| id | productName | storeLocation | totalSales |
++----+-------------+---------------+------------+
+|  1 | Chair       | North         |         55 |
+|  2 | Desk        | Central       |        120 |
+|  3 | Couch       | Central       |         78 |
+|  4 | Chair       | South         |         23 |
+|  5 | Chair       | South         |         10 |
+|  6 | Chair       | North         |         98 |
+|  7 | Desk        | West          |         61 |
+|  8 | Couch       | North         |        180 |
+|  9 | Chair       | South         |         14 |
+| 10 | Desk        | North         |         45 |
+| 11 | Chair       | North         |         87 |
+| 12 | Chair       | Central       |         34 |
+| 13 | Desk        | South         |         42 |
+| 14 | Couch       | West          |         58 |
+| 15 | Couch       | Central       |         27 |
+| 16 | Chair       | South         |         91 |
+| 17 | Chair       | West          |         82 |
+| 18 | Chair       | North         |         37 |
+| 19 | Desk        | North         |         68 |
+| 20 | Couch       | Central       |         54 |
+| 21 | Chair       | South         |         81 |
+| 22 | Desk        | North         |         25 |
+| 23 | Chair       | North         |         46 |
+| 24 | Chair       | Central       |        121 |
+| 25 | Desk        | South         |         85 |
+| 26 | Couch       | North         |         43 |
+| 27 | Desk        | West          |         10 |
+| 28 | Chair       | North         |          5 |
+| 29 | Chair       | Central       |         16 |
+| 30 | Desk        | South         |          9 |
+| 31 | Couch       | West          |         22 |
+| 32 | Couch       | Central       |         59 |
+| 33 | Chair       | South         |         76 |
+| 34 | Chair       | West          |         48 |
+| 35 | Chair       | North         |         19 |
+| 36 | Desk        | North         |          3 |
+| 37 | Couch       | West          |         63 |
+| 38 | Chair       | South         |         81 |
+| 39 | Desk        | North         |         85 |
+| 40 | Chair       | North         |         90 |
+| 41 | Chair       | Central       |         47 |
+| 42 | Desk        | West          |         63 |
+| 43 | Couch       | North         |         28 |
+| 44 | Chair       | East          |         89 |
+| 45 | Chair       | East          |         11 |
+| 46 | Desk        | East          |        110 |
++----+-------------+---------------+------------+
+46 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select productName, sum(case when storeLocation='south' then totalsales end) South from pivot_table group by productName;
++-------------+-------+
+| productName | South |
++-------------+-------+
+| Chair       |   376 |
+| Desk        |   136 |
+| Couch       |  NULL |
++-------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select productName, ifnull(sum(case when storeLocation='south' then totalsales end),'N/A') South from pivot_table group by productName;
++-------------+-------+
+| productName | South |
++-------------+-------+
+| Chair       | 376   |
+| Desk        | 136   |
+| Couch       | N/A   |
++-------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select productName, ifnull(sum(case when storeLocation='south' then totalsales end),'not soled in south ') South , ifnull(sum(case when storeLocation='north' then totalsales end),not soled in north ') north from pivot_table group by productName;
+    '> ^C
+mysql> select productName, ifnull(sum(case when storeLocation='south' then totalsales end),'not soled in south ') South , ifnull(sum(case when storeLocation='north' then totalsales end),'not soled in north ') north from pivot_table group by productName;
++-------------+---------------------+-------+
+| productName | South               | north |
++-------------+---------------------+-------+
+| Chair       | 376                 | 437   |
+| Desk        | 136                 | 226   |
+| Couch       | not soled in south  | 251   |
++-------------+---------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from transactions;
++-----+--------+---------------------+------+--------+
+| _id | custId | transactionDate     | type | amount |
++-----+--------+---------------------+------+--------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |
++-----+--------+---------------------+------+--------+
+33 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select _id,custId, transactionDate, type, amount, case type='c' then amount else -amount end R1
+ from transactions;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'then amount else -amount end R1 from transactions' at line 1
+mysql> select _id,custId, transactionDate, type, amount, case when type='c' then amount else -amount e
+nd R1 from transactions;
++-----+--------+---------------------+------+--------+--------+
+| _id | custId | transactionDate     | type | amount | R1     |
++-----+--------+---------------------+------+--------+--------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |  30000 |
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |  30000 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 | 370000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 | 370000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |  -7000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |  -7500 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |  -7000 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |  -2000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |  -4000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |  -1500 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |  -1000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |    500 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |   -500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |   1500 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |    200 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |  -6000 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |  -2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |   1200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |  -4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |  -4200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |    600 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |    400 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |   1600 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |  -3000 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |  -3000 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |    600 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |  -7000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |    250 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |  -5600 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |    200 |
++-----+--------+---------------------+------+--------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select _id,custId, transactionDate, type, amount, case when type='c' then amount else -amount end R1 from transactions where custId=1002;
++-----+--------+---------------------+------+--------+--------+
+| _id | custId | transactionDate     | type | amount | R1     |
++-----+--------+---------------------+------+--------+--------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |  -7000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |  -4000 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |   -500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |   1500 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |  -6000 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |   1600 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |  -3000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |    250 |
++-----+--------+---------------------+------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from r1;
++------+
+| c1   |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select * from r;
++------+
+| c1   |
++------+
+|   -2 |
+|    1 |
+|    2 |
+|   -1 |
+|    3 |
+|   -2 |
+|    1 |
+|    2 |
+|    1 |
++------+
+9 rows in set (0.00 sec)
+
+mysql> select sum(c1) from r;
++---------+
+| sum(c1) |
++---------+
+|       5 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select * from transactions order by _id;
++-----+--------+---------------------+------+--------+
+| _id | custId | transactionDate     | type | amount |
++-----+--------+---------------------+------+--------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |
++-----+--------+---------------------+------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select * from transactions order by custId;
++-----+--------+---------------------+------+--------+
+| _id | custId | transactionDate     | type | amount |
++-----+--------+---------------------+------+--------+
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |
++-----+--------+---------------------+------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select * from transactions order by custId, _id;
++-----+--------+---------------------+------+--------+
+| _id | custId | transactionDate     | type | amount |
++-----+--------+---------------------+------+--------+
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |
++-----+--------+---------------------+------+--------+
+33 rows in set (0.00 sec)
+
+mysql> select _id,custId, transactionDate, type, amount, sum(case when type='c' then amount else -amount end) over(partition by custId order by _id )  Balance from transactions where custId=1002;
++-----+--------+---------------------+------+--------+---------+
+| _id | custId | transactionDate     | type | amount | Balance |
++-----+--------+---------------------+------+--------+---------+
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |   30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |  400000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |  393000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |  389000 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |  388500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |  390000 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |  384000 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |  385200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |  386800 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |  383800 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |  384050 |
++-----+--------+---------------------+------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select _id,custId, transactionDate, type, amount, sum(case when type='c' then amount else -amount end) over(partition by custId order by _id )  Balance from transactions;
++-----+--------+---------------------+------+--------+---------+
+| _id | custId | transactionDate     | type | amount | Balance |
++-----+--------+---------------------+------+--------+---------+
+|   2 |   1001 | 2021-01-01 12:45:13 | c    |  30000 |   30000 |
+|   5 |   1001 | 2021-01-01 14:45:13 | c    | 370000 |  400000 |
+|   8 |   1001 | 2021-01-01 12:45:13 | d    |   7500 |  392500 |
+|  10 |   1001 | 2021-01-01 11:20:10 | d    |   2000 |  390500 |
+|  12 |   1001 | 2021-02-23 10:24:34 | d    |   1500 |  389000 |
+|  14 |   1001 | 2021-02-28 11:43:13 | c    |    500 |  389500 |
+|  19 |   1001 | 2021-02-27 11:43:10 | d    |   2000 |  387500 |
+|  20 |   1001 | 2021-03-17 09:15:23 | c    |   1200 |  388700 |
+|  23 |   1001 | 2021-05-14 10:17:10 | c    |    600 |  389300 |
+|  29 |   1001 | 2021-05-14 10:17:13 | c    |    600 |  389900 |
+|  32 |   1001 | 2021-05-14 10:17:18 | d    |   5600 |  384300 |
+|   1 |   1002 | 2021-01-01 10:24:34 | c    |  30000 |   30000 |
+|   4 |   1002 | 2021-01-01 12:24:34 | c    | 370000 |  400000 |
+|   7 |   1002 | 2021-01-01 10:24:34 | d    |   7000 |  393000 |
+|  11 |   1002 | 2021-02-12 12:00:42 | d    |   4000 |  389000 |
+|  15 |   1002 | 2021-03-13 12:23:31 | d    |    500 |  388500 |
+|  16 |   1002 | 2021-03-01 11:20:43 | c    |   1500 |  390000 |
+|  18 |   1002 | 2021-04-30 14:20:32 | d    |   6000 |  384000 |
+|  25 |   1002 | 2021-04-29 15:53:23 | c    |   1200 |  385200 |
+|  26 |   1002 | 2021-06-23 09:53:54 | c    |   1600 |  386800 |
+|  28 |   1002 | 2021-04-30 14:20:33 | d    |   3000 |  383800 |
+|  31 |   1002 | 2021-06-23 09:53:57 | c    |    250 |  384050 |
+|   3 |   1003 | 2021-01-01 14:00:04 | c    |  30000 |   30000 |
+|   6 |   1003 | 2021-01-01 15:00:04 | c    | 370000 |  400000 |
+|   9 |   1003 | 2021-01-01 14:00:04 | d    |   7000 |  393000 |
+|  13 |   1003 | 2021-01-12 09:23:09 | d    |   1000 |  392000 |
+|  17 |   1003 | 2021-02-24 11:34:32 | c    |    200 |  392200 |
+|  21 |   1003 | 2021-04-06 09:13:22 | d    |   4500 |  387700 |
+|  22 |   1003 | 2021-02-04 11:32:43 | d    |   4200 |  383500 |
+|  24 |   1003 | 2021-02-07 14:45:33 | c    |    400 |  383900 |
+|  27 |   1003 | 2021-03-06 11:50:34 | d    |   3000 |  380900 |
+|  30 |   1003 | 2021-01-01 14:00:05 | d    |   7000 |  373900 |
+|  33 |   1003 | 2021-03-06 11:50:37 | c    |    200 |  374100 |
++-----+--------+---------------------+------+--------+---------+
+33 rows in set (0.00 sec)
+
+mysql>
+mysql> select _id,custId, transactionDate, type, amount, sum(case when type='c' then amount else -amount end) over(partition by custId order by _id )  Balance from transactions;
+
+
+
