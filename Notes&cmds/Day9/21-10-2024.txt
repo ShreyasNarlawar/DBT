@@ -1,0 +1,1960 @@
+select ename, gender, deptno from emp f where not exists(select true from emp m where f.deptno=m.deptno and gender='m');
+
+
+mysql> select ename, gender, deptno from emp;
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| GITA     | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| SMITH    | M      |     20 |
+| AARAV    | M      |     10 |
+| THOMAS   | M      |     10 |
+| ALLEN    | M      |     30 |
+| WARD     | M      |     30 |
+| JONES    | M      |     20 |
+| MARTIN   | M      |     30 |
+| BLAKE    | M      |     30 |
+| CLARK    | M      |     10 |
+| SCOTT    | M      |     20 |
+| KING     | M      |     10 |
+| FRED     | M      |     20 |
+| TURNER   | M      |     30 |
+| ADAMS    | M      |     20 |
+| JAMES    | M      |     30 |
+| FORD     | M      |     20 |
+| HOFFMAN  | M      |     30 |
+| GRASS    | M      |     30 |
+| MILLER   | M      |     10 |
+| AARUSH   | M      |     30 |
+| ALEX     | M      |     30 |
+| NATASHA  | F      |     30 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp order by deptno;
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| AARAV    | M      |     10 |
+| THOMAS   | M      |     10 |
+| CLARK    | M      |     10 |
+| KING     | M      |     10 |
+| MILLER   | M      |     10 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| SMITH    | M      |     20 |
+| JONES    | M      |     20 |
+| SCOTT    | M      |     20 |
+| FRED     | M      |     20 |
+| ADAMS    | M      |     20 |
+| FORD     | M      |     20 |
+| GITA     | F      |     30 |
+| ALLEN    | M      |     30 |
+| WARD     | M      |     30 |
+| MARTIN   | M      |     30 |
+| BLAKE    | M      |     30 |
+| TURNER   | M      |     30 |
+| JAMES    | M      |     30 |
+| HOFFMAN  | M      |     30 |
+| GRASS    | M      |     30 |
+| AARUSH   | M      |     30 |
+| ALEX     | M      |     30 |
+| NATASHA  | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+28 rows in set (0.00 sec)
+
+mysql> select gender, count(*) from emp group by gender;
++--------+----------+
+| gender | count(*) |
++--------+----------+
+| F      |        7 |
+| M      |       21 |
++--------+----------+
+2 rows in set (0.01 sec)
+
+mysql> select ename, gender, deptno from emp where gender='f';
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| GITA     | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| NATASHA  | F      |     30 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp where gender='m';
++---------+--------+--------+
+| ename   | gender | deptno |
++---------+--------+--------+
+| SMITH   | M      |     20 |
+| AARAV   | M      |     10 |
+| THOMAS  | M      |     10 |
+| ALLEN   | M      |     30 |
+| WARD    | M      |     30 |
+| JONES   | M      |     20 |
+| MARTIN  | M      |     30 |
+| BLAKE   | M      |     30 |
+| CLARK   | M      |     10 |
+| SCOTT   | M      |     20 |
+| KING    | M      |     10 |
+| FRED    | M      |     20 |
+| TURNER  | M      |     30 |
+| ADAMS   | M      |     20 |
+| JAMES   | M      |     30 |
+| FORD    | M      |     20 |
+| HOFFMAN | M      |     30 |
+| GRASS   | M      |     30 |
+| MILLER  | M      |     10 |
+| AARUSH  | M      |     30 |
+| ALEX    | M      |     30 |
++---------+--------+--------+
+21 rows in set (0.00 sec)
+
+mysql> select deptno from emp where gender='f' group by deptno;
++--------+
+| deptno |
++--------+
+|     20 |
+|     30 |
+|     50 |
++--------+
+3 rows in set (0.01 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select ename, job from emp where job<>'manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where not job='manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where not job='manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp f where not exists(select true from emp m where f.deptno=m.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp f where not exists(select true from emp m where f.deptno=m.deptno and gender='f');
++--------+--------+--------+
+| ename  | gender | deptno |
++--------+--------+--------+
+| AARAV  | M      |     10 |
+| THOMAS | M      |     10 |
+| CLARK  | M      |     10 |
+| KING   | M      |     10 |
+| MILLER | M      |     10 |
++--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b wh
+ere a.deptno=b.deptno and gender='f');
++--------+--------+--------+
+| ename  | gender | deptno |
++--------+--------+--------+
+| AARAV  | M      |     10 |
+| THOMAS | M      |     10 |
+| CLARK  | M      |     10 |
+| KING   | M      |     10 |
+| MILLER | M      |     10 |
++--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b where a.deptno=b.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b where a.deptno=b.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> create or replace view v1 as select * from dept;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show create view v1;
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View
+
+                                                                      | character_set_client | collation_connection |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| v1   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v1` AS select `dept`.`DEPTNO` AS `DEPTNO`,`dept`.`DNAME` AS `DNAME`,`dept`.`LOC` AS `LOC`,`dept`.`PWD` AS `PWD`,`dept`.`STARTEDON` AS `STARTEDON` from `dept` | cp850
+    | cp850_general_ci     |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update dept set dname='ACCOINTING' where deptno=10;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOINTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update dept set dname='ACCOUNTING' where deptno=10;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table dept add column city varchar(10) default 'Baroda';
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city   |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | Baroda |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | Baroda |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | Baroda |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | Baroda |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | Baroda |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> show create view v1;
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View
+
+                                                                      | character_set_client | collation_connection |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| v1   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v1` AS select `dept`.`DEPTNO` AS `DEPTNO`,`dept`.`DNAME` AS `DNAME`,`dept`.`LOC` AS `LOC`,`dept`.`PWD` AS `PWD`,`dept`.`STARTEDON` AS `STARTEDON` from `dept` | cp850
+    | cp850_general_ci     |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city   |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | Baroda |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | Baroda |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | Baroda |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | Baroda |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | Baroda |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter table dept drop column city;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc v1;
+ERROR 1356 (HY000): View 'z1.v1' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+mysql> select * from v1;
+ERROR 1356 (HY000): View 'z1.v1' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+mysql> alter table dept add column city varchar(10);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc v1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into v1 values(1,1,1,1,1,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+6 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, enme, job, sal from emp;
+ERROR 1054 (42S22): Unknown column 'enme' in 'field list'
+mysql> create or replace view v1 as select empno, ename, job, sal from emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+----------+---------------------+------+
+| empno | ename    | job                 | sal  |
++-------+----------+---------------------+------+
+|  6001 | GITA     | Compliance officers | 1750 |
+|  6129 | VRUSHALI | Compliance officers | 1750 |
+|  6473 | SHARMIN  | Public Relation     | 1750 |
+|  6781 | BANDISH  | Public Relation     | 1750 |
+|  7369 | SMITH    | CLERK               |  800 |
+|  7415 | AARAV    | CLERK               | 3350 |
+|  7421 | THOMAS   | CLERK               | 1750 |
+|  7499 | ALLEN    | SALESMAN            | 1600 |
+|  7521 | WARD     | SALESMAN            | 1250 |
+|  7566 | JONES    | MANAGER             | 2975 |
+|  7654 | MARTIN   | SALESMAN            | 1250 |
+|  7698 | BLAKE    | MANAGER             | 2850 |
+|  7782 | CLARK    | MANAGER             | 2450 |
+|  7788 | SCOTT    | ANALYST             | 3000 |
+|  7839 | KING     | PRESIDENT           | 5000 |
+|  7840 | FRED     | vice PRESIDENT      | 5000 |
+|  7844 | TURNER   | SALESMAN            | 1500 |
+|  7876 | ADAMS    | CLERK               | 1100 |
+|  7900 | JAMES    | CLERK               |  950 |
+|  7902 | FORD     | ANALYST             | 3000 |
+|  7919 | HOFFMAN  | MANAGER             | 4150 |
+|  7920 | GRASS    | SALESMAN            | 2575 |
+|  7934 | MILLER   | CLERK               | 1300 |
+|  7945 | AARUSH   | SALESMAN            | 1350 |
+|  7949 | ALEX     | MANAGER             | 1250 |
+|  8433 | NATASHA  | CLERK               | 1750 |
+|  9400 | SANGITA  | Compliance officers | 1750 |
+|  9473 | SUPRIYA  | ANALYST             | 1750 |
++-------+----------+---------------------+------+
+28 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal, deptno from emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+----------+---------------------+------+--------+
+| empno | ename    | job                 | sal  | deptno |
++-------+----------+---------------------+------+--------+
+|  6001 | GITA     | Compliance officers | 1750 |     30 |
+|  6129 | VRUSHALI | Compliance officers | 1750 |     50 |
+|  6473 | SHARMIN  | Public Relation     | 1750 |     20 |
+|  6781 | BANDISH  | Public Relation     | 1750 |     20 |
+|  7369 | SMITH    | CLERK               |  800 |     20 |
+|  7415 | AARAV    | CLERK               | 3350 |     10 |
+|  7421 | THOMAS   | CLERK               | 1750 |     10 |
+|  7499 | ALLEN    | SALESMAN            | 1600 |     30 |
+|  7521 | WARD     | SALESMAN            | 1250 |     30 |
+|  7566 | JONES    | MANAGER             | 2975 |     20 |
+|  7654 | MARTIN   | SALESMAN            | 1250 |     30 |
+|  7698 | BLAKE    | MANAGER             | 2850 |     30 |
+|  7782 | CLARK    | MANAGER             | 2450 |     10 |
+|  7788 | SCOTT    | ANALYST             | 3000 |     20 |
+|  7839 | KING     | PRESIDENT           | 5000 |     10 |
+|  7840 | FRED     | vice PRESIDENT      | 5000 |     20 |
+|  7844 | TURNER   | SALESMAN            | 1500 |     30 |
+|  7876 | ADAMS    | CLERK               | 1100 |     20 |
+|  7900 | JAMES    | CLERK               |  950 |     30 |
+|  7902 | FORD     | ANALYST             | 3000 |     20 |
+|  7919 | HOFFMAN  | MANAGER             | 4150 |     30 |
+|  7920 | GRASS    | SALESMAN            | 2575 |     30 |
+|  7934 | MILLER   | CLERK               | 1300 |     10 |
+|  7945 | AARUSH   | SALESMAN            | 1350 |     30 |
+|  7949 | ALEX     | MANAGER             | 1250 |     30 |
+|  8433 | NATASHA  | CLERK               | 1750 |     30 |
+|  9400 | SANGITA  | Compliance officers | 1750 |     50 |
+|  9473 | SUPRIYA  | ANALYST             | 1750 |     50 |
++-------+----------+---------------------+------+--------+
+28 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal from emp where deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+
+| empno | ename  | job       | sal  |
++-------+--------+-----------+------+
+|  7415 | AARAV  | CLERK     | 3350 |
+|  7421 | THOMAS | CLERK     | 1750 |
+|  7782 | CLARK  | MANAGER   | 2450 |
+|  7839 | KING   | PRESIDENT | 5000 |
+|  7934 | MILLER | CLERK     | 1300 |
++-------+--------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal, deptno from emp where
+deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select job from emp empno=7788;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=7788' at line 1
+mysql> select job from emp where empno=7788;
++---------+
+| job     |
++---------+
+| ANALYST |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update v1 set job='xyz' where empno=7788;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select job from emp where empno=7788;
++---------+
+| job     |
++---------+
+| ANALYST |
++---------+
+1 row in set (0.00 sec)
+
+mysql> set autocommitr = off;
+ERROR 1193 (HY000): Unknown system variable 'autocommitr'
+mysql> set autocommit = off;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> update v1 set job='xyz' where empno=7415;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select job from emp where empno=7415;
++------+
+| job  |
++------+
+| xyz  |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | xyz       | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept where deptno=10 with check option;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * ffrom v1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ffrom v1' at line 1
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept where deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+6 rows in set (0.00 sec)
+
+mysql> insert into v1 values(2,2,2,2,2,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> create table h as select * from dept;
+Query OK, 7 rows affected (0.03 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> desc h;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from h where deptno=10 with check option;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> insert into v1 values(3,2,2,2,2,2);
+ERROR 1369 (HY000): CHECK OPTION failed 'z1.v1'
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into v1 values(30,2,2,2,2,2);
+ERROR 1369 (HY000): CHECK OPTION failed 'z1.v1'
+mysql> insert into v1 values(10,2,2,2,2,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
+|     10 | 2          | 2        | 2      | 2          | 2    |
++--------+------------+----------+--------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
+|     10 | 2          | 2        | 2          | 2          | 2    |
++--------+------------+----------+------------+------------+------+
+8 rows in set (0.00 sec)
+
+mysql>
+
+mysql> select ename, gender, deptno from emp;
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| GITA     | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| SMITH    | M      |     20 |
+| AARAV    | M      |     10 |
+| THOMAS   | M      |     10 |
+| ALLEN    | M      |     30 |
+| WARD     | M      |     30 |
+| JONES    | M      |     20 |
+| MARTIN   | M      |     30 |
+| BLAKE    | M      |     30 |
+| CLARK    | M      |     10 |
+| SCOTT    | M      |     20 |
+| KING     | M      |     10 |
+| FRED     | M      |     20 |
+| TURNER   | M      |     30 |
+| ADAMS    | M      |     20 |
+| JAMES    | M      |     30 |
+| FORD     | M      |     20 |
+| HOFFMAN  | M      |     30 |
+| GRASS    | M      |     30 |
+| MILLER   | M      |     10 |
+| AARUSH   | M      |     30 |
+| ALEX     | M      |     30 |
+| NATASHA  | F      |     30 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp order by deptno;
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| AARAV    | M      |     10 |
+| THOMAS   | M      |     10 |
+| CLARK    | M      |     10 |
+| KING     | M      |     10 |
+| MILLER   | M      |     10 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| SMITH    | M      |     20 |
+| JONES    | M      |     20 |
+| SCOTT    | M      |     20 |
+| FRED     | M      |     20 |
+| ADAMS    | M      |     20 |
+| FORD     | M      |     20 |
+| GITA     | F      |     30 |
+| ALLEN    | M      |     30 |
+| WARD     | M      |     30 |
+| MARTIN   | M      |     30 |
+| BLAKE    | M      |     30 |
+| TURNER   | M      |     30 |
+| JAMES    | M      |     30 |
+| HOFFMAN  | M      |     30 |
+| GRASS    | M      |     30 |
+| AARUSH   | M      |     30 |
+| ALEX     | M      |     30 |
+| NATASHA  | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+28 rows in set (0.00 sec)
+
+mysql> select gender, count(*) from emp group by gender;
++--------+----------+
+| gender | count(*) |
++--------+----------+
+| F      |        7 |
+| M      |       21 |
++--------+----------+
+2 rows in set (0.01 sec)
+
+mysql> select ename, gender, deptno from emp where gender='f';
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| GITA     | F      |     30 |
+| VRUSHALI | F      |     50 |
+| SHARMIN  | F      |     20 |
+| BANDISH  | F      |     20 |
+| NATASHA  | F      |     30 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp where gender='m';
++---------+--------+--------+
+| ename   | gender | deptno |
++---------+--------+--------+
+| SMITH   | M      |     20 |
+| AARAV   | M      |     10 |
+| THOMAS  | M      |     10 |
+| ALLEN   | M      |     30 |
+| WARD    | M      |     30 |
+| JONES   | M      |     20 |
+| MARTIN  | M      |     30 |
+| BLAKE   | M      |     30 |
+| CLARK   | M      |     10 |
+| SCOTT   | M      |     20 |
+| KING    | M      |     10 |
+| FRED    | M      |     20 |
+| TURNER  | M      |     30 |
+| ADAMS   | M      |     20 |
+| JAMES   | M      |     30 |
+| FORD    | M      |     20 |
+| HOFFMAN | M      |     30 |
+| GRASS   | M      |     30 |
+| MILLER  | M      |     10 |
+| AARUSH  | M      |     30 |
+| ALEX    | M      |     30 |
++---------+--------+--------+
+21 rows in set (0.00 sec)
+
+mysql> select deptno from emp where gender='f' group by deptno;
++--------+
+| deptno |
++--------+
+|     20 |
+|     30 |
+|     50 |
++--------+
+3 rows in set (0.01 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select ename, job from emp where job<>'manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where not job='manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where job='manager';
++---------+---------+
+| ename   | job     |
++---------+---------+
+| JONES   | MANAGER |
+| BLAKE   | MANAGER |
+| CLARK   | MANAGER |
+| HOFFMAN | MANAGER |
+| ALEX    | MANAGER |
++---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, job from emp where not job='manager';
++----------+---------------------+
+| ename    | job                 |
++----------+---------------------+
+| GITA     | Compliance officers |
+| VRUSHALI | Compliance officers |
+| SHARMIN  | Public Relation     |
+| BANDISH  | Public Relation     |
+| SMITH    | CLERK               |
+| AARAV    | CLERK               |
+| THOMAS   | CLERK               |
+| ALLEN    | SALESMAN            |
+| WARD     | SALESMAN            |
+| MARTIN   | SALESMAN            |
+| SCOTT    | ANALYST             |
+| KING     | PRESIDENT           |
+| FRED     | vice PRESIDENT      |
+| TURNER   | SALESMAN            |
+| ADAMS    | CLERK               |
+| JAMES    | CLERK               |
+| FORD     | ANALYST             |
+| GRASS    | SALESMAN            |
+| MILLER   | CLERK               |
+| AARUSH   | SALESMAN            |
+| NATASHA  | CLERK               |
+| SANGITA  | Compliance officers |
+| SUPRIYA  | ANALYST             |
++----------+---------------------+
+23 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp f where not exists(select true from emp m where f.deptno=m.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp f where not exists(select true from emp m where f.deptno=m.deptno and gender='f');
++--------+--------+--------+
+| ename  | gender | deptno |
++--------+--------+--------+
+| AARAV  | M      |     10 |
+| THOMAS | M      |     10 |
+| CLARK  | M      |     10 |
+| KING   | M      |     10 |
+| MILLER | M      |     10 |
++--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b wh
+ere a.deptno=b.deptno and gender='f');
++--------+--------+--------+
+| ename  | gender | deptno |
++--------+--------+--------+
+| AARAV  | M      |     10 |
+| THOMAS | M      |     10 |
+| CLARK  | M      |     10 |
+| KING   | M      |     10 |
+| MILLER | M      |     10 |
++--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b where a.deptno=b.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename, gender, deptno from emp a where not exists(select true from emp b where a.deptno=b.deptno and gender='m');
++----------+--------+--------+
+| ename    | gender | deptno |
++----------+--------+--------+
+| VRUSHALI | F      |     50 |
+| SANGITA  | F      |     50 |
+| SUPRIYA  | F      |     50 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> create or replace view v1 as select * from dept;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show create view v1;
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View
+
+                                                                      | character_set_client | collation_connection |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| v1   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v1` AS select `dept`.`DEPTNO` AS `DEPTNO`,`dept`.`DNAME` AS `DNAME`,`dept`.`LOC` AS `LOC`,`dept`.`PWD` AS `PWD`,`dept`.`STARTEDON` AS `STARTEDON` from `dept` | cp850
+    | cp850_general_ci     |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ddd        | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update dept set dname='ACCOINTING' where deptno=10;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOINTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update dept set dname='ACCOUNTING' where deptno=10;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table dept add column city varchar(10) default 'Baroda';
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city   |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | Baroda |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | Baroda |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | Baroda |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | Baroda |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | Baroda |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> show create view v1;
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View
+
+                                                                      | character_set_client | collation_connection |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| v1   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v1` AS select `dept`.`DEPTNO` AS `DEPTNO`,`dept`.`DNAME` AS `DNAME`,`dept`.`LOC` AS `LOC`,`dept`.`PWD` AS `PWD`,`dept`.`STARTEDON` AS `STARTEDON` from `dept` | cp850
+    | cp850_general_ci     |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city   |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | Baroda |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | Baroda |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | Baroda |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | Baroda |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | Baroda |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter table dept drop column city;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc v1;
+ERROR 1356 (HY000): View 'z1.v1' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+mysql> select * from v1;
+ERROR 1356 (HY000): View 'z1.v1' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+mysql> alter table dept add column city varchar(10);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc v1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into v1 values(1,1,1,1,1,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+6 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, enme, job, sal from emp;
+ERROR 1054 (42S22): Unknown column 'enme' in 'field list'
+mysql> create or replace view v1 as select empno, ename, job, sal from emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+----------+---------------------+------+
+| empno | ename    | job                 | sal  |
++-------+----------+---------------------+------+
+|  6001 | GITA     | Compliance officers | 1750 |
+|  6129 | VRUSHALI | Compliance officers | 1750 |
+|  6473 | SHARMIN  | Public Relation     | 1750 |
+|  6781 | BANDISH  | Public Relation     | 1750 |
+|  7369 | SMITH    | CLERK               |  800 |
+|  7415 | AARAV    | CLERK               | 3350 |
+|  7421 | THOMAS   | CLERK               | 1750 |
+|  7499 | ALLEN    | SALESMAN            | 1600 |
+|  7521 | WARD     | SALESMAN            | 1250 |
+|  7566 | JONES    | MANAGER             | 2975 |
+|  7654 | MARTIN   | SALESMAN            | 1250 |
+|  7698 | BLAKE    | MANAGER             | 2850 |
+|  7782 | CLARK    | MANAGER             | 2450 |
+|  7788 | SCOTT    | ANALYST             | 3000 |
+|  7839 | KING     | PRESIDENT           | 5000 |
+|  7840 | FRED     | vice PRESIDENT      | 5000 |
+|  7844 | TURNER   | SALESMAN            | 1500 |
+|  7876 | ADAMS    | CLERK               | 1100 |
+|  7900 | JAMES    | CLERK               |  950 |
+|  7902 | FORD     | ANALYST             | 3000 |
+|  7919 | HOFFMAN  | MANAGER             | 4150 |
+|  7920 | GRASS    | SALESMAN            | 2575 |
+|  7934 | MILLER   | CLERK               | 1300 |
+|  7945 | AARUSH   | SALESMAN            | 1350 |
+|  7949 | ALEX     | MANAGER             | 1250 |
+|  8433 | NATASHA  | CLERK               | 1750 |
+|  9400 | SANGITA  | Compliance officers | 1750 |
+|  9473 | SUPRIYA  | ANALYST             | 1750 |
++-------+----------+---------------------+------+
+28 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal, deptno from emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+----------+---------------------+------+--------+
+| empno | ename    | job                 | sal  | deptno |
++-------+----------+---------------------+------+--------+
+|  6001 | GITA     | Compliance officers | 1750 |     30 |
+|  6129 | VRUSHALI | Compliance officers | 1750 |     50 |
+|  6473 | SHARMIN  | Public Relation     | 1750 |     20 |
+|  6781 | BANDISH  | Public Relation     | 1750 |     20 |
+|  7369 | SMITH    | CLERK               |  800 |     20 |
+|  7415 | AARAV    | CLERK               | 3350 |     10 |
+|  7421 | THOMAS   | CLERK               | 1750 |     10 |
+|  7499 | ALLEN    | SALESMAN            | 1600 |     30 |
+|  7521 | WARD     | SALESMAN            | 1250 |     30 |
+|  7566 | JONES    | MANAGER             | 2975 |     20 |
+|  7654 | MARTIN   | SALESMAN            | 1250 |     30 |
+|  7698 | BLAKE    | MANAGER             | 2850 |     30 |
+|  7782 | CLARK    | MANAGER             | 2450 |     10 |
+|  7788 | SCOTT    | ANALYST             | 3000 |     20 |
+|  7839 | KING     | PRESIDENT           | 5000 |     10 |
+|  7840 | FRED     | vice PRESIDENT      | 5000 |     20 |
+|  7844 | TURNER   | SALESMAN            | 1500 |     30 |
+|  7876 | ADAMS    | CLERK               | 1100 |     20 |
+|  7900 | JAMES    | CLERK               |  950 |     30 |
+|  7902 | FORD     | ANALYST             | 3000 |     20 |
+|  7919 | HOFFMAN  | MANAGER             | 4150 |     30 |
+|  7920 | GRASS    | SALESMAN            | 2575 |     30 |
+|  7934 | MILLER   | CLERK               | 1300 |     10 |
+|  7945 | AARUSH   | SALESMAN            | 1350 |     30 |
+|  7949 | ALEX     | MANAGER             | 1250 |     30 |
+|  8433 | NATASHA  | CLERK               | 1750 |     30 |
+|  9400 | SANGITA  | Compliance officers | 1750 |     50 |
+|  9473 | SUPRIYA  | ANALYST             | 1750 |     50 |
++-------+----------+---------------------+------+--------+
+28 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal from emp where deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+
+| empno | ename  | job       | sal  |
++-------+--------+-----------+------+
+|  7415 | AARAV  | CLERK     | 3350 |
+|  7421 | THOMAS | CLERK     | 1750 |
+|  7782 | CLARK  | MANAGER   | 2450 |
+|  7839 | KING   | PRESIDENT | 5000 |
+|  7934 | MILLER | CLERK     | 1300 |
++-------+--------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select empno, ename, job, sal, deptno from emp where
+deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select job from emp empno=7788;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=7788' at line 1
+mysql> select job from emp where empno=7788;
++---------+
+| job     |
++---------+
+| ANALYST |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update v1 set job='xyz' where empno=7788;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select job from emp where empno=7788;
++---------+
+| job     |
++---------+
+| ANALYST |
++---------+
+1 row in set (0.00 sec)
+
+mysql> set autocommitr = off;
+ERROR 1193 (HY000): Unknown system variable 'autocommitr'
+mysql> set autocommit = off;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> update v1 set job='xyz' where empno=7415;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select job from emp where empno=7415;
++------+
+| job  |
++------+
+| xyz  |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | xyz       | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++-------+--------+-----------+------+--------+
+| empno | ename  | job       | sal  | deptno |
++-------+--------+-----------+------+--------+
+|  7415 | AARAV  | CLERK     | 3350 |     10 |
+|  7421 | THOMAS | CLERK     | 1750 |     10 |
+|  7782 | CLARK  | MANAGER   | 2450 |     10 |
+|  7839 | KING   | PRESIDENT | 5000 |     10 |
+|  7934 | MILLER | CLERK     | 1300 |     10 |
++-------+--------+-----------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept where deptno=10 with check option;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * ffrom v1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ffrom v1' at line 1
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from dept where deptno=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+6 rows in set (0.00 sec)
+
+mysql> insert into v1 values(2,2,2,2,2,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> create table h as select * from dept;
+Query OK, 7 rows affected (0.03 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> desc h;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create or replace view v1 as select * from h where deptno=10 with check option;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> insert into v1 values(3,2,2,2,2,2);
+ERROR 1369 (HY000): CHECK OPTION failed 'z1.v1'
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
++--------+------------+----------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
++--------+------------+----------+--------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into v1 values(30,2,2,2,2,2);
+ERROR 1369 (HY000): CHECK OPTION failed 'z1.v1'
+mysql> insert into v1 values(10,2,2,2,2,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from v1;
++--------+------------+----------+--------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD    | STARTEDON  | city |
++--------+------------+----------+--------+------------+------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 | NULL |
+|     10 | 2          | 2        | 2      | 2          | 2    |
++--------+------------+----------+--------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from h;
++--------+------------+----------+------------+------------+------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | city |
++--------+------------+----------+------------+------------+------+
+|      1 | 1          | 1        | 1          | 1          | 1    |
+|      2 | 2          | 2        | 2          | 2          | 2    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | NULL |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | NULL |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NULL |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | NULL |
+|     10 | 2          | 2        | 2          | 2          | 2    |
++--------+------------+----------+------------+------------+------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select * from traintimetable;
++----+---------+----------------------------+----------+----------+
+| id | trainID | stationname                | distance | timing   |
++----+---------+----------------------------+----------+----------+
+|  1 |   22863 | mumbai central             |        0 | 08:30:00 |
+|  2 |   22863 | surat                      |      262 | 12:40:13 |
+|  3 |   22863 | baroda                     |      129 | 14:42:00 |
+|  4 |   22863 | ahmedabad JN               |      100 | 17:10:00 |
+|  5 |   22863 | surendranagar              |      130 | 20:00:00 |
+|  6 |   22863 | rajkot JN                  |      116 | 23:40:00 |
+|  7 |   22863 | hapa                       |       75 | 00:05:00 |
+|  8 |   22868 | pune JN                    |        0 | 17:20:00 |
+|  9 |   22868 | uruli                      |       30 | 17:47:13 |
+| 10 |   22868 | daund chord line           |     87.1 | 18:27:00 |
+| 11 |   22868 | ahmadnagar                 |       71 | 20:10:00 |
+| 12 |   22868 | belapur                    |       61 | 21:15:00 |
+| 13 |   22868 | kopargaon                  |       44 | 21:57:00 |
+| 14 |   22868 | manmad JN                  |    41.84 | 23:25:13 |
+| 15 |   22868 | daund chord line           |      249 | 18:27:00 |
+| 16 |   22868 | bhopal                     |      728 | 08:55:00 |
+| 17 |   12267 | mumbai central             |        0 | 23:00:00 |
+| 18 |   12267 | ahmedabad JN               |      534 | 05:00:00 |
+| 19 |   12267 | surendranagar              |      131 | 07:20:00 |
+| 20 |   12267 | rajkot JN                  |      106 | 09:15:00 |
+| 21 |   12267 | hapa                       |      191 | 12:45:00 |
+| 22 |   12307 | HOWRAH JN                  |     2271 | 23:25:00 |
+| 23 |   12307 | BARDDHAMAN JN              |     99.6 | 00:31:00 |
+| 24 |   12307 | ASANSOL JN                 |      107 | 02:09:00 |
+| 25 |   12307 | DHANBAD JN                 |       65 | 03:25:00 |
+| 26 |   12307 | PARASNATH                  |       49 | 04:02:00 |
+| 27 |   12307 | KODERMA                    |      115 | 04:54:00 |
+| 28 |   12307 | GAYA JN                    |       76 | 06:30:00 |
+| 29 |   12307 | ANUGRAHA NARAYAN ROAD      |      115 | 07:20:00 |
+| 30 |   12307 | DEHRI ON SONE              |       17 | 07:40:00 |
+| 31 |   12307 | SASARAM                    |       55 | 07:58:00 |
+| 32 |   12307 | BHABUA ROAD                |       31 | 08:38:00 |
+| 33 |   12307 | PT DEEN DAYAL UPADHYAYA JN |       90 | 09:55:00 |
+| 34 |   12307 | MIRZAPUR                   |    155.5 | 10:55:00 |
+| 35 |   12307 | PRAYAGRAJ JN               |       99 | 12:20:00 |
+| 36 |   12307 | FATEHPUR                   |      155 | 13:32:00 |
+| 37 |   12307 | KANPUR CENTRAL             |       75 | 14:55:00 |
+| 38 |   12307 | ETAWAH                     |       47 | 16:27:00 |
+| 39 |   12307 | TUNDLA JN                  |       54 | 18:35:00 |
+| 40 |   12307 | AGRA FORT                  |       21 | 19:30:00 |
+| 41 |   12307 | ACHHNERA JN                |      227 | 20:14:00 |
+| 42 |   12307 | BHARATPUR JN               |      746 | 20:44:00 |
+| 43 |   12307 | GAYA JN                    |       90 | 06:30:00 |
+| 44 |   12307 | JAIPUR                     |       33 | 00:05:00 |
+| 45 |   12307 | NAWA CITY                  |       14 | 01:38:00 |
+| 46 |   12307 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 47 |   12307 | MAKRANA JN                 |       59 | 02:03:00 |
+| 48 |   12307 | DEGANA JN                  |      104 | 02:37:00 |
+| 49 |   12307 | MERTA ROAD JN              |        0 | 03:15:00 |
+| 50 |   12307 | JODHPUR JN                 |       89 | 04:20:00 |
+| 51 |   12308 | JAIPUR                     |       21 | 00:05:00 |
+| 52 |   12308 | NAWA CITY                  |       14 | 01:38:00 |
+| 53 |   12308 | KUCHAMAN CITY              |       44 | 01:55:00 |
+| 54 |   12308 | MAKRANA JN                 |       46 | 02:03:00 |
+| 55 |   12308 | DEGANA JN                  |      103 | 02:37:00 |
+| 56 |   12308 | MERTA ROAD JN              |     NULL | 03:15:00 |
+| 57 |   12308 | JODHPUR JN                 |     NULL | 04:20:00 |
++----+---------+----------------------------+----------+----------+
+57 rows in set (0.02 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select trainID, stationname 'Departure Station' from
+    -> stationname^C
+mysql> select trainID, stationname 'Departure Station' from stationname where
+    -> ^C
+mysql> select trainID, stationname 'Departure Station' from stationname where trainID=22863;
+ERROR 1146 (42S02): Table 'z1.stationname' doesn't exist
+mysql> select trainID, stationname 'Departure Station' from traintimetable where trainID=
+22863;
++---------+-------------------+
+| trainID | Departure Station |
++---------+-------------------+
+|   22863 | mumbai central    |
+|   22863 | surat             |
+|   22863 | baroda            |
+|   22863 | ahmedabad JN      |
+|   22863 | surendranagar     |
+|   22863 | rajkot JN         |
+|   22863 | hapa              |
++---------+-------------------+
+7 rows in set (0.00 sec)
+
+mysql> select trainID, stationname 'Departure Station', 'Arrival Station' from traintimet
+able where trainID=22863;
++---------+-------------------+-----------------+
+| trainID | Departure Station | Arrival Station |
++---------+-------------------+-----------------+
+|   22863 | mumbai central    | Arrival Station |
+|   22863 | surat             | Arrival Station |
+|   22863 | baroda            | Arrival Station |
+|   22863 | ahmedabad JN      | Arrival Station |
+|   22863 | surendranagar     | Arrival Station |
+|   22863 | rajkot JN         | Arrival Station |
+|   22863 | hapa              | Arrival Station |
++---------+-------------------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> select trainID, stationname 'Departure Station', lead(stationname) over(partition by trainID order by id) 'Arrival Station' from traintimetable where trainID=22863;
++---------+-------------------+-----------------+
+| trainID | Departure Station | Arrival Station |
++---------+-------------------+-----------------+
+|   22863 | mumbai central    | surat           |
+|   22863 | surat             | baroda          |
+|   22863 | baroda            | ahmedabad JN    |
+|   22863 | ahmedabad JN      | surendranagar   |
+|   22863 | surendranagar     | rajkot JN       |
+|   22863 | rajkot JN         | hapa            |
+|   22863 | hapa              | NULL            |
++---------+-------------------+-----------------+
+7 rows in set (0.02 sec)
+
+mysql> select trainID, stationname 'Departure Station', ifnull(lead(stationname) over(par
+tition by trainID order by id), 'Last Stop') 'Arrival Station' from traintimetable where
+trainID=22863;
++---------+-------------------+-----------------+
+| trainID | Departure Station | Arrival Station |
++---------+-------------------+-----------------+
+|   22863 | mumbai central    | surat           |
+|   22863 | surat             | baroda          |
+|   22863 | baroda            | ahmedabad JN    |
+|   22863 | ahmedabad JN      | surendranagar   |
+|   22863 | surendranagar     | rajkot JN       |
+|   22863 | rajkot JN         | hapa            |
+|   22863 | hapa              | Last Stop       |
++---------+-------------------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> select dname from dept;
++------------+
+| dname      |
++------------+
+| 1          |
+| 2          |
+| ACCOUNTING |
+| RESEARCH   |
+| SALES      |
+| OPERATIONS |
+| HR         |
++------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from dept where depto<3;
+ERROR 1054 (42S22): Unknown column 'depto' in 'where clause'
+mysql> delete from dept where deptno<3;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select dname from dept;
++------------+
+| dname      |
++------------+
+| ACCOUNTING |
+| RESEARCH   |
+| SALES      |
+| OPERATIONS |
+| HR         |
++------------+
+5 rows in set (0.00 sec)
+
+mysql> select dname from dept where deptno=11010;
+Empty set (0.00 sec)
+
+mysql> select dname into @x from dept;
+ERROR 1172 (42000): Result consisted of more than one row
+mysql>
+mysql>
+mysql> select dname into @x from dept where deptno=10;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @x;
++------------+
+| @x         |
++------------+
+| ACCOUNTING |
++------------+
+1 row in set (0.00 sec)
+
+mysql>
