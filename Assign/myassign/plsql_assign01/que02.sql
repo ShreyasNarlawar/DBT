@@ -1,6 +1,6 @@
 drop procedure if exists que02;
 delimiter $
-create procedure que02(num1 int, num2 int)
+create procedure que02(num1 int,in num2 int)
 begin
 declare result int;
 
