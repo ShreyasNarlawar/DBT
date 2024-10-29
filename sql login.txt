@@ -1,0 +1,16 @@
+//for mysql login 
+mysql --host=192.168.10.127 --port=3306 --user=dac86 --password=welcome
+
+//for server on powershell
+mongod --dbpath="C:\Users\IET\Desktop\NoSQL" --bind_ip=192.168.10.131
+
+//for client on cmd-01
+mongosh --host=192.168.10.131 --port=27017
+
+//for transfer file on cmd-02
+
+mongoimport --host=192.168.10.131 --port=27017 --db=mydb --collection=emp --type=json --file="C:\Users\IET\Desktop\NoSQL\emp.json"
+
+//for transfer file on cmd-02
+
+mongoimport --host=192.168.10.131 --port=27017 --db=mydb --collection=Movies --type=csv --file="C:\Users\IET\Desktop\NoSQL\movie.csv" --headerline
